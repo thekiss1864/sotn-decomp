@@ -37,7 +37,7 @@ void EntityBreakableWall(Entity* self) {
         InitializeEntity(g_EInitInteractable);
         self->hitboxWidth = 0x10;
         self->hitboxHeight = 0x20;
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
         if (!self->params) {
             castleFlag = NZ1_LOWER_WALL_OPEN;
         } else {
@@ -157,7 +157,7 @@ void EntityBreakableWallPartial(Entity* self) {
             self->step = 0x10;
             return;
         }
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
         self->hitPoints = 0x7FFF;
         self->hitboxWidth = 8;
         self->hitboxHeight = 0x18;
@@ -179,7 +179,7 @@ void EntityBreakableWallPartial(Entity* self) {
             g_Tilemap.fg[tileIdx] = D_us_80181078[i + 3];
             tileY += 0x10;
         }
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         tempEntity = AllocEntity(&g_Entities[224], &g_Entities[256]);
         if (tempEntity != NULL) {
             CreateEntityFromEntity(E_EXPLOSION, self, tempEntity);

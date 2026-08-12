@@ -51,7 +51,7 @@ void func_us_801BE880(Entity* self) {
         InitializeEntity(D_us_801809C8);
         self->zPriority = 0x70;
         self->hitPoints = 0x7FFF;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->ext.segmentedBreakableWall.damageTaken = 0;
         if (g_CastleFlags[NO1_SECRET_WALL_BROKEN]) {
             self->step = 5;
@@ -154,7 +154,7 @@ void func_us_801BEB54(Entity* self) {
         self->hitPoints = 0x18;
         self->hitboxWidth = 0x10;
         self->hitboxHeight = 0xC;
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
         self->ext.segmentedBreakableWall.hitPoints = self->hitPoints;
         self->hitboxOffY = -0xC;
         break;

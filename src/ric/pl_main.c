@@ -746,7 +746,7 @@ void RicMain(void) {
         g_Player.status |= PLAYER_STATUS_INVINCIBLE;
     }
     g_api.UpdateAnim(D_80155964, (AnimationFrame**)D_8015538C);
-    PLAYER.hitboxState = 1;
+    PLAYER.hitboxState = HITBOX_ACTIVE;
     PLAYER.hitParams = 0;
     PLAYER.hitPoints = 0;
     g_Player.unk7A = 0;

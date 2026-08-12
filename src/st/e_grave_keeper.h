@@ -141,7 +141,7 @@ void EntityGraveKeeper(Entity* self) {
     if (self->flags & FLAG_DEAD && self->step != 0xC) {
         entity = self + 1;
         DestroyEntity(entity);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         SetStep(GRAVE_KEEPER_DEATH);
     }
 

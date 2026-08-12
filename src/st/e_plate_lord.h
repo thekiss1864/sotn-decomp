@@ -891,7 +891,7 @@ void EntityPlateLord(Entity* self) {
         case 0:
             part = self;
             for (i = 0; i < 10; i++, part++) {
-                part->hitboxState = 0;
+                part->hitboxState = HITBOX_INACTIVE;
             }
             part = self + 3;
             part->step = 3;
@@ -1377,7 +1377,7 @@ void func_us_801D4CAC(Entity* self) {
         }
         break;
     case 17:
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->flags |= FLAG_DESTROY_IF_OUT_OF_CAMERA |
                        FLAG_DESTROY_IF_BARELY_OUT_OF_CAMERA;
         break;

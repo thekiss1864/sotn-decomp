@@ -340,7 +340,7 @@ static void func_us_801D1A9C(void) {
             g_CurrentEntity->step_s = 4;
             break;
         }
-        g_CurrentEntity->hitboxState = 1;
+        g_CurrentEntity->hitboxState = HITBOX_ACTIVE;
         g_CurrentEntity->ext.armorLord.unk8C = 0;
         PlaySfxPositional(SFX_MAGIC_NOISE_SWEEP);
         g_CurrentEntity->step_s++;
@@ -803,7 +803,7 @@ void EntityArmorLord(Entity* self) {
         }
         self->flags &= ~FLAG_UNK_20000000;
         self->zPriority -= 4;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
 #ifdef STAGE_IS_NO1
         D_us_80182D4C = 1;
 #endif
@@ -950,7 +950,7 @@ void EntityArmorLord(Entity* self) {
 
     case 7:
         if (!AnimateEntity(anim6, self)) {
-            self->hitboxState = 3;
+            self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
             self->step_s = 3;
         }
         if (self->pose > 1) {
@@ -1077,9 +1077,9 @@ void func_us_801D348C(Entity* self) {
 
     animCurFrame = parent->animCurFrame;
     if (animCurFrame == 0x1E) {
-        self->hitboxState = 3;
+        self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
     } else {
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
     }
 
     if (animCurFrame < 5 || animCurFrame > 30) {

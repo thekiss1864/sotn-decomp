@@ -603,7 +603,7 @@ Entity* func_us_80173AA0(Entity* self) {
 
     for (i = 0; i < LEN(D_us_80178344); i++, entity++) {
         D_us_80178344[i] = 0;
-        if (entity->entityId && entity->hitboxState != 0 &&
+        if (entity->entityId && entity->hitboxState != HITBOX_INACTIVE &&
             !(entity->flags & FLAG_UNK_00200000) &&
             LOH(entity->posX.i.hi) >= -16 && entity->posX.i.hi <= 272 &&
             LOH(entity->posY.i.hi) <= 240 && entity->posY.i.hi >= 0 &&

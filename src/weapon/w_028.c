@@ -123,7 +123,7 @@ static void EntityWeaponAttack(Entity* self) {
         }
         break;
     case 4:
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         g_Player.unk48 = 0;
         self->drawFlags |= ENTITY_ROTATE;
         self->posY.val += self->velocityY;
@@ -602,7 +602,7 @@ static void func_ptr_80170024(Entity* self) {
         }
         self->hitboxHeight = 0x10;
         if (--self->ext.shield.unk80 == 0) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step++;
         }
         break;

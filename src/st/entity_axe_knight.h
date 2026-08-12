@@ -247,7 +247,7 @@ void EntityAxeKnight(Entity* self) {
         if (self->step != AXE_KNIGHT_DYING) {
             PlaySfxPositional(SFX_AXE_KNIGHT_DEATH);
             CreateExplosionPuff();
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->zPriority -= 0x10;
             self->ext.axeknight.unk80 = 65;
             SetStep(AXE_KNIGHT_DYING);

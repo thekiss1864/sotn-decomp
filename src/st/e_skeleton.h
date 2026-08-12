@@ -100,7 +100,7 @@ void EntitySkeleton(Entity* self) {
 #ifdef STAGE_IS_LIB
         if (self->params & 0x10) {
             self->flags |= FLAG_UNK_2000;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->animCurFrame = 0;
             self->step = SKELETON_LIB_UNK;
             return;
@@ -305,7 +305,7 @@ void UnusedSkeletonEntity(Entity* self) {
         self->scaleX = 0x120;
         self->scaleY = 0x200;
         self->opacity = 0;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->drawFlags |= ENTITY_OPACITY | ENTITY_SCALEX | ENTITY_SCALEY;
         return;
     }

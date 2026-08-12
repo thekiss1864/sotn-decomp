@@ -46,7 +46,7 @@ void EntityBreakableFloorSecret(Entity* self) {
             return;
         }
 
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
         self->hitboxWidth = 0xD;
         self->hitboxHeight = 0x13;
         // fallthrough

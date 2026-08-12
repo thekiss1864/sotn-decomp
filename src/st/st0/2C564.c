@@ -448,8 +448,8 @@ void EntityDracula(Entity* self) {
     s32 primIndex;
 
     if ((self->flags & FLAG_DEAD) && (self->step < 8)) {
-        self->hitboxState = 0;
-        (self + 1)->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
+        (self + 1)->hitboxState = HITBOX_INACTIVE;
         SetStep(8);
     }
 
@@ -469,7 +469,7 @@ void EntityDracula(Entity* self) {
     case 0:
         InitializeEntity(g_EInitDracula);
         self->animCurFrame = 0x4F;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->ext.dracula.unkA1 = 1;
         self->facingLeft = 1;
         entity = self + 1;
@@ -542,7 +542,7 @@ void EntityDracula(Entity* self) {
     case 4:
         switch (self->step_s) {
         case 0:
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->ext.dracula.unk9C = 0;
             self->step_s++;
             // fallthrough
@@ -597,7 +597,7 @@ void EntityDracula(Entity* self) {
 
         case 3:
             self->facingLeft = (GetSideToPlayer() & 1) ^ 1;
-            self->hitboxState = 3;
+            self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
             self->ext.dracula.unkA2++;
             self->ext.dracula.unkA2 &= 3;
             if (!self->ext.dracula.unkA2) {
@@ -708,7 +708,7 @@ void EntityDracula(Entity* self) {
     case 8:
         switch (self->step_s) {
         case 0:
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             g_isDraculaFirstFormDefeated = true;
             prim = self->ext.dracula.prim;
             while (prim != NULL) {
@@ -932,7 +932,7 @@ void EntityDraculaBody(Entity* self) {
     switch (self->step) {
     case 0:
         InitializeEntity(g_EInitDracula);
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
         self->hitPoints = 0x7FFF;
         self->animCurFrame = 0;
         self->hitboxOffX = 3;
@@ -946,16 +946,16 @@ void EntityDraculaBody(Entity* self) {
         self->posX.i.hi = parent->posX.i.hi;
         self->posY.i.hi = parent->posY.i.hi;
         self->hitboxState = parent->hitboxState;
-        self->hitboxState &= 0xFFFD;
+        self->hitboxState &= ~HITBOX_SOLID;
         break;
     case 2:
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         break;
     }
 
 #ifndef VERSION_PSP
     if (g_isDraculaFirstFormDefeated) {
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
     }
 #endif
 }
@@ -1021,11 +1021,11 @@ void EntityDraculaMeteorball(Entity* entity) {
     case 0:
         InitializeEntity(g_EInitDraculaMeteorball);
         entity->drawFlags |= ENTITY_ROTATE;
-        entity->hitboxState = 0;
+        entity->hitboxState = HITBOX_INACTIVE;
         break;
     case 1:
         if (AnimateEntity(D_801809B0, entity) == 0) {
-            entity->hitboxState = 1;
+            entity->hitboxState = HITBOX_ACTIVE;
             SetStep(2);
         }
         break;
@@ -1071,7 +1071,7 @@ void func_801AD838(Entity* entity) {
     if (!entity->step) {
         InitializeEntity(g_EInitDraculaFireball);
         entity->animCurFrame = 0;
-        entity->hitboxState = 0;
+        entity->hitboxState = HITBOX_INACTIVE;
         entity->velocityY = FIX(-1);
     }
     MoveEntity();
@@ -1093,7 +1093,7 @@ void EntityDraculaGlass(Entity* entity) {
     case 0:
         InitializeEntity(g_EInitDraculaFireball);
         entity->animCurFrame = 0x59;
-        entity->hitboxState = 0;
+        entity->hitboxState = HITBOX_INACTIVE;
         entity->drawFlags = ENTITY_ROTATE;
         entity->velocityX = FIX(-1);
         entity->velocityY = 0;

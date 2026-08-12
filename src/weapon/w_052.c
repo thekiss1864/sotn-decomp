@@ -295,7 +295,7 @@ static void EntityWeaponAttack(Entity* self) {
         }
         break;
     case 4:
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         g_Player.unk48 = 0;
         self->drawFlags |= ENTITY_ROTATE;
         self->posY.val += self->velocityY;
@@ -326,7 +326,7 @@ static void EntityWeaponAttack(Entity* self) {
         if (self->step != 1 && self->step != 2) {
             return;
         }
-        self->hitboxState |= 2;
+        self->hitboxState |= HITBOX_SOLID;
         // Spell is over. Timer either ran out or we ran out of MP
         if (--D_170000_8017ABC0 == 0 || (g_Status.mp <= 0)) {
             D_170000_8017ABBC = 0;

@@ -323,7 +323,7 @@ void EntityBreakableWallSegment(Entity* self) {
     switch (self->step) {
     case 0:
         InitializeEntity(D_us_801811E8);
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
         self->hitPoints = 8;
         self->hitboxWidth = 0x10;
         self->hitboxHeight = 0xC;

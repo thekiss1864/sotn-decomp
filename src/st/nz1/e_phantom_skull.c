@@ -114,7 +114,7 @@ void EntityPhantomSkullTrail(Entity* self) {
     switch (self->step) {
     case 0:
         InitializeEntity(g_EInitPhantomSkullTrail);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->animCurFrame = 0x12;
         self->blendMode |= BLEND_TRANSP | BLEND_ADD;
         self->drawFlags |= ENTITY_OPACITY;

@@ -238,7 +238,7 @@ void EntityMariaCatAttack(Entity* self) {
         }
         break;
     case 4:
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->velocityY += FIX(1.0);
         if (self->velocityY > FIX(4.0)) {
             self->velocityY = FIX(4.0);
@@ -467,7 +467,7 @@ void EntityMariaDollAttack(Entity* self) {
             self->ext.mariaDoll.opacity = 128;
             self->ext.mariaDoll.ttl = 15;
             self->step = 3;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
         }
         break;
     case 3:
@@ -555,7 +555,7 @@ void EntityMariaTurtleAttack(Entity* self) {
         self->hitboxOffY = 0;
         self->attack = 255;
         self->attackElement = ELEMENT_NONE;
-        self->hitboxState = 5;
+        self->hitboxState = HITBOX_WEAPON_HIT | HITBOX_ACTIVE;
         self->flags |= FLAG_NOT_AN_ENEMY;
         self->nFramesInvincibility = 6;
         self->stunFrames = 0;
@@ -757,7 +757,7 @@ void EntityMariaTurtleCrashVortex(Entity* self) {
         MarSetWeaponParams(
             self, 5, ELEMENT_WATER | ELEMENT_HOLY, 2, 32, 0, 2, 0);
         self->ext.mariaTurtleVortex.hitboxState = self->hitboxState;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->ext.mariaTurtleVortex.timer = 0;
         self->step = 1;
         self->rotate +=
@@ -773,7 +773,7 @@ void EntityMariaTurtleCrashVortex(Entity* self) {
         }
         self->ext.mariaTurtleVortex.timer++;
         if (self->ext.mariaTurtleVortex.timer >= 240) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step = 2;
         }
 

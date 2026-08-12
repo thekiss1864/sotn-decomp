@@ -40,7 +40,7 @@ void EntityMudman(Entity* self) {
             CreateEntityFromEntity(E_ID_4E, self, tempEntity2);
             tempEntity2->ext.mudman.unk9C = self;
         }
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->flags |= FLAG_UNK_2000;
         self->ext.mudman.unk84 = 0;
         self->ext.mudman.unk81 = 0;
@@ -247,7 +247,7 @@ void EntityMudman(Entity* self) {
     case 6:
         AnimateEntity(D_us_80182E3C, self);
         colRet = UnkCollisionFunc2(D_us_80182E80);
-        self->hitboxState = 3;
+        self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
         if (GetDistanceToPlayerX() < 0x40) {
             self->pose = 0;
             self->poseTimer = 0;
@@ -315,7 +315,7 @@ void EntityMudman(Entity* self) {
         self->animCurFrame = 0;
         self->ext.mudman.unk80 = 0;
         self->step_s = 0;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         PlaySfxPositional(SFX_NOISE_SWEEP_DOWN_A);
         self->step++;
         break;

@@ -20,7 +20,7 @@ void EntityTriangleElevator(Entity* self) {
     case 0:
         InitializeEntity(g_EInitTOPCommon);
         self->animCurFrame = 0xD;
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
         self->ext.topElevator.unk88 = 0;
         self->ext.topElevator.movingUp = self->params & 1;
         self->ext.topElevator.playerCollision = 0;
@@ -210,7 +210,7 @@ void func_us_801AABA4(Entity* self) {
     case 0:
         InitializeEntity(g_EInitTOPCommon);
         self->animCurFrame = 0xC;
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
         self->ext.topElevator.unk88 = 0;
         self->ext.topElevator.movingUp = self->params & 1;
         self->posY.i.hi = 0x1AF - g_Tilemap.scrollY.i.hi;

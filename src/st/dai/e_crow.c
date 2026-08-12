@@ -55,7 +55,7 @@ void EntityBlackCrow(Entity* self) {
     if ((self->flags & FLAG_DEAD) && self->step != CROW_DEATH) {
         self->drawFlags |= ENTITY_ROTATE;
         self->velocityY = 0;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         PlaySfxPositional(SFX_CROW_DEATH);
         SetStep(CROW_DEATH);
     }

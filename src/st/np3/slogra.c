@@ -106,7 +106,7 @@ void EntitySlogra(Entity* self) {
         if (!self->ext.GS_Props.nearDeath) {
             if ((self->hitPoints < g_api.enemyDefs[243].hitPoints / 4) &&
                 (self->step != SLOGRA_LOSE_SPEAR)) {
-                self->hitboxState = 0;
+                self->hitboxState = HITBOX_INACTIVE;
                 PlaySfxPositional(SFX_SLOGRA_ROAR_DEFEAT);
                 SetStep(SLOGRA_LOSE_SPEAR);
             }
@@ -119,7 +119,7 @@ void EntitySlogra(Entity* self) {
             }
         }
         if (slograGaibonRetreat) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             if (self->step != SLOGRA_GAIBON_RETREAT) {
                 SetStep(SLOGRA_GAIBON_RETREAT);
             }
@@ -390,7 +390,7 @@ void EntitySlogra(Entity* self) {
     case SLOGRA_DYING: // Unused
         switch (self->step_s) {
         case SLOGRA_DYING_START:
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             if (!self->ext.GS_Props.nearDeath) {
                 self->ext.GS_Props.nearDeath = 1;
             }
@@ -470,7 +470,7 @@ void EntitySlograSpear(Entity* self) {
         switch (self->step_s) {
         case 0:
             self->drawFlags = ENTITY_ROTATE;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             if (self->facingLeft) {
                 self->velocityX = FIX(-2.25);
             } else {

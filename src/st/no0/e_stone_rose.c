@@ -168,7 +168,7 @@ void func_us_801D8150(Entity* self) {
             PlaySfxPositional(SFX_STONE_ROSE_DEATH);
             part -= 11;
             for (i = 0; i < 12; i++, part++) {
-                part->hitboxState = 0;
+                part->hitboxState = HITBOX_INACTIVE;
                 part->step = 7;
                 part->ext.stoneRose.timer = 0xC0;
                 part->flags |= FLAG_DEAD;
@@ -440,9 +440,9 @@ void func_us_801D8150(Entity* self) {
 
     if (self->step < 7 && params != 0 && params != 11) {
         if ((params ^ g_GameTimer) & 1) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
         } else {
-            self->hitboxState = 3;
+            self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
         }
     }
     self->ext.stoneRose.segmentAngle =

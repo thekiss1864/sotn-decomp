@@ -304,11 +304,11 @@ void HitDetection(void) {
         miscVar2 = 0;
         // Odd structure - may be a macro or a fake match,
         // the block is intentionally a no-op to match PSP
-        if ((entity->hitboxState & 8) && (iterEnt->hitboxState & 4)) {
+        if ((entity->hitboxState & 8) && (iterEnt->hitboxState & HITBOX_WEAPON_HIT)) {
             (void)0;
         } else if (entityHit->hitPoints) {
             if (iterEnt->attack) {
-                if ((iterEnt->hitboxState & 0x80) == 0) {
+                if ((iterEnt->hitboxState & HITBOX_INVULNERABLE) == 0) {
                     spHitbox -= 4;
                     x += *spHitbox++;
                     spHitbox++;
@@ -338,7 +338,7 @@ void HitDetection(void) {
             }
             if (iterEnt->attack && entityHit->hitPoints != 0x7FFF) {
                 miscVar1 = g_api.DealDamage(entity, iterEnt);
-                if (iterEnt->hitboxState == 4) {
+                if (iterEnt->hitboxState == HITBOX_WEAPON_HIT) {
                     miscVar1 = 0;
                 }
                 if ((g_Status.relics[RELIC_SPIRIT_ORB] & 2) &&

@@ -52,7 +52,7 @@ void EntityBlock(Entity* self) {
         }
         break;
     }
-    self->hitboxState = 1;
+    self->hitboxState = HITBOX_ACTIVE;
     self->hitboxOffX = 8;
     self->hitboxOffY = -68;
     self->hitboxWidth = 8;
@@ -78,7 +78,7 @@ void EntityStatue(Entity* self) {
     if (!self->step) {
         InitializeEntity(g_EInitEnvironment);
         self->animCurFrame = 2;
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
         self->hitPoints = 4;
         self->hitboxOffX = -8;
         self->hitboxOffY = -32;
@@ -86,7 +86,7 @@ void EntityStatue(Entity* self) {
         self->hitboxHeight = 16;
         entity = &PLAYER;
         if (entity->posX.i.hi < 128) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
         }
     }
     if (self->flags & FLAG_DEAD) {

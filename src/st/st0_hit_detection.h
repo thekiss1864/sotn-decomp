@@ -296,7 +296,7 @@ void OVL_EXPORT(HitDetection)(void) {
 #endif
         if (entityHit->hitPoints) {
             if (iterEnt->attack) {
-                if ((iterEnt->hitboxState & 0x80) == 0) {
+                if ((iterEnt->hitboxState & HITBOX_INVULNERABLE) == 0) {
                     spHitbox -= 4;
                     x += *spHitbox++;
                     spHitbox++;

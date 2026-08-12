@@ -184,7 +184,7 @@ void EntityMarionette(Entity* self) {
     s16 clut;
 
     if ((self->flags & FLAG_DEAD) && self->step < 10) {
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
 #ifndef BOSS_IS_BO0
 #ifdef VERSION_PSP
         self->palette = self->hitEffect = g_EInitSlinger[3] + 1;

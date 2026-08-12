@@ -42,7 +42,7 @@ void EntityDiplocephalusFireball(Entity* self) {
     FntPrint("tama_step %x\n", self->step);
     if ((self->flags & FLAG_DEAD) && self->step < 4) {
         PlaySfxPositional(SFX_EXPLODE_FAST_A);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         SetStep(4);
     }
 
@@ -209,11 +209,11 @@ void EntityDiplocephalusTail(Entity* self) {
     if (self->nextTailPart == NULL) {
         self->ext.diploTail.diplo->ext.diplo.hitParams = self->hitParams;
     } else if (self->hitboxState) {
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         if (self->prevTailPart != NULL) {
-            (self - 1)->hitboxState = 1;
+            (self - 1)->hitboxState = HITBOX_ACTIVE;
         } else {
-            (self + 5)->hitboxState = 1;
+            (self + 5)->hitboxState = HITBOX_ACTIVE;
         }
     }
     if ((self->ext.diploTail.diplo->entityId != E_DIPLOCEPHALUS) &&
@@ -223,7 +223,7 @@ void EntityDiplocephalusTail(Entity* self) {
     switch (self->step) {
     case 0:
         InitializeEntity(g_EInitDiplocephalusTail);
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
         self->drawFlags = ENTITY_ROTATE;
         self->ext.diploTail.angle = ROT(0);
         self->ext.diploTail.unk9C = 0;
@@ -245,7 +245,7 @@ void EntityDiplocephalusTail(Entity* self) {
             part->attack = self->attack;
             part->hitPoints = self->hitPoints;
             part->enemyId = self->enemyId;
-            part->hitboxState = 0;
+            part->hitboxState = HITBOX_INACTIVE;
             part->hitboxWidth = self->hitboxWidth;
             part->hitboxHeight = self->hitboxHeight;
             part->flags = self->flags;
@@ -258,7 +258,7 @@ void EntityDiplocephalusTail(Entity* self) {
         }
         part->nextPart = NULL;
         (part - 1)->ext.diploTail.unk9F = 1;
-        part->hitboxState = 3;
+        part->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
         part->hitboxWidth = 8;
         part->hitboxHeight = 13;
         part->hitboxOffY = -8;
@@ -431,10 +431,10 @@ void EntityDiplocephalusTail(Entity* self) {
         PlaySfxPositional(SFX_DIPLOCEPHALUS_DEATH);
         part = self;
         while (part->nextTailPart != NULL) {
-            part->hitboxState = 0;
+            part->hitboxState = HITBOX_INACTIVE;
             part++;
         }
-        tailTip->hitboxState = 0;
+        tailTip->hitboxState = HITBOX_INACTIVE;
         PlaySfxPositional(SFX_STUTTER_EXPLODE_B);
         self->step++;
         break;

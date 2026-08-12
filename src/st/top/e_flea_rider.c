@@ -46,7 +46,7 @@ void EntityFleaRider(Entity* self) {
     if (self->flags & FLAG_DEAD && self->step < 3) {
         PlaySfxPositional(SFX_FLEA_RIDER_EXPLODE);
         PlaySfxPositional(SFX_FLEA_RIDER_DEATH);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->flags |= FLAG_DESTROY_IF_OUT_OF_CAMERA |
                        FLAG_DESTROY_IF_BARELY_OUT_OF_CAMERA;
         self->animCurFrame = 5;
@@ -142,7 +142,7 @@ void EntityFleaRider(Entity* self) {
     case 5:
         if (!self->step_s) {
             InitializeEntity(g_EInitFleaRider);
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->flags |= FLAG_DESTROY_IF_OUT_OF_CAMERA |
                            FLAG_DESTROY_IF_BARELY_OUT_OF_CAMERA |
                            FLAG_UNK_00200000 | FLAG_UNK_2000;
@@ -177,7 +177,7 @@ void EntityFleaRider(Entity* self) {
     case 8:
         InitializeEntity(g_EInitFleaRider);
         self->flags |= FLAG_UNK_00200000 | FLAG_UNK_2000;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->animCurFrame = 0;
         self->step = 9;
         break;

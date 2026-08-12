@@ -206,11 +206,11 @@ void func_us_801C03E8(Entity* self) {
         self->ext.ILLEGAL.s16[1] = 1;
     } else {
         palette = 0x810D;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->ext.ILLEGAL.s16[1] = 0;
     }
     if (RIC.step == PL_S_DEAD || RIC.step == PL_S_ENDING_1) {
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
     }
     if (self->step != PL_S_9) {
         self->palette = palette;
@@ -842,7 +842,7 @@ void RicEntitySubwpnCross(Entity* self) {
             self->ext.crossBoomerang.timer = 30;
             self->step = 3;
             self->ext.crossBoomerang.timer = 16;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
         }
 
         break;
@@ -886,7 +886,7 @@ void RicEntitySubwpnCross(Entity* self) {
             ((self->hitFlags == 2) || (self->flags & FLAG_DEAD))) {
             self->velocityY = FIX(-3.0);
             self->ext.holywater.timer = 50;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step = 6;
             self->velocityX = -((s32)self->velocityX / 2);
         }
@@ -929,7 +929,7 @@ void RicEntitySubwpnCross(Entity* self) {
             DestroyEntity(self);
             return;
         }
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->animSet = 0;
         self->posX.val += self->velocityX;
         break;
@@ -1107,7 +1107,7 @@ void RicEntityCrashAxe(Entity* self) {
         }
         if ((self->hitFlags == 2) || (self->flags & FLAG_DEAD)) {
             self->velocityY = FIX(-3.0);
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step = 4;
             self->velocityX = -((s32)self->velocityX / 2);
         }

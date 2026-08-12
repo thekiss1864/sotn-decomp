@@ -134,7 +134,7 @@ void EntityWarpRoom(Entity* self) {
                 entity->posX.i.hi = (Random() & 0x7F) + 0x40;
             }
         }
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
         self->hitboxOffY += 16;
         self->hitboxWidth = 2;
         self->hitboxHeight = 16;

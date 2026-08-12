@@ -157,7 +157,7 @@ static void EntityWeaponAttack(Entity* self) {
         }
         break;
     case 4:
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         g_Player.unk48 = 0;
         self->drawFlags |= ENTITY_ROTATE;
         self->posY.val += self->velocityY;

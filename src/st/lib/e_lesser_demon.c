@@ -57,7 +57,7 @@ void func_us_801BB8DC(s16* unkArg) {
     switch (g_CurrentEntity->step_s) {
     case 0:
         g_CurrentEntity->animCurFrame = 0;
-        g_CurrentEntity->hitboxState = 0;
+        g_CurrentEntity->hitboxState = HITBOX_INACTIVE;
         g_CurrentEntity->zPriority -= 0x10;
         g_CurrentEntity->ext.lesserDemon.unkB2 = g_CurrentEntity->palette;
         g_CurrentEntity->drawFlags |= ENTITY_OPACITY;
@@ -95,7 +95,7 @@ void func_us_801BB8DC(s16* unkArg) {
         }
         if (!(--g_CurrentEntity->ext.lesserDemon.unkB0)) {
             g_CurrentEntity->palette = g_CurrentEntity->ext.lesserDemon.unkB2;
-            g_CurrentEntity->hitboxState = 3;
+            g_CurrentEntity->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
             SetStep(1);
         }
         break;
@@ -300,7 +300,7 @@ void EntityLesserDemonSpit(Entity* self) {
         if (!--self->ext.lesserDemon.timer) {
             self->pose = 0;
             self->poseTimer = 0;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step++;
             prim->drawMode = DRAW_HIDE;
         } else {
@@ -1021,7 +1021,7 @@ void EntityLesserDemon(Entity* self) {
             g_api.FreePrimitives(self->primIndex);
             self->flags &= ~FLAG_HAS_PRIMS;
         }
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         SetStep(15);
     }
     switch (self->step) {
@@ -1040,10 +1040,10 @@ void EntityLesserDemon(Entity* self) {
         break;
 
     case 2:
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->facingLeft = (GetSideToPlayer() & 1) ^ 1;
         if (D_us_80181ACC & 1) {
-            self->hitboxState = 3;
+            self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
             SetStep(3);
         }
         break;
@@ -1275,7 +1275,7 @@ void EntityLesserDemon(Entity* self) {
                 tempEntity->posX.i.hi = self->posX.i.hi;
                 tempEntity->posY.i.hi = self->posY.i.hi;
                 tempEntity->facingLeft = self->facingLeft;
-                tempEntity->hitboxState = 1;
+                tempEntity->hitboxState = HITBOX_ACTIVE;
                 self->ext.lesserDemon.unk87 = 1;
                 if (self->facingLeft) {
                     EntityGreyPuffSpawner(self, 5, 3, -4, 32, 2, 7);
@@ -1283,7 +1283,7 @@ void EntityLesserDemon(Entity* self) {
                     EntityGreyPuffSpawner(self, 5, 3, 4, 32, 2, -7);
                 }
             } else {
-                tempEntity->hitboxState = 0;
+                tempEntity->hitboxState = HITBOX_INACTIVE;
             }
             break;
         }
@@ -1459,7 +1459,7 @@ void EntityLesserDemon(Entity* self) {
         }
         switch (self->step_s) {
         case 0:
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             D_us_80181ACC |= 2;
             self->step_s++;
             /* fallthrough */
@@ -1542,7 +1542,7 @@ void func_us_801BED48(Entity* self) {
         self->hitboxWidth = 0x1C;
         self->hitboxHeight = 4;
         self->hitboxOffX = -0x14;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
     }
     if (D_us_80181ACC & 2) {
         DestroyEntity(self);

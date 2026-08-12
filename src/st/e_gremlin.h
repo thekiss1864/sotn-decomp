@@ -55,7 +55,7 @@ void EntityGremlin(Entity* self) {
     // Check for being dead
     if (self->flags & FLAG_DEAD) {
         if (self->step != HURT_DEATH) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             SetStep(HURT_DEATH);
         }
     }
@@ -238,7 +238,7 @@ void EntityGremlinEffect(Entity* self) {
     case INIT:
         InitializeEntity(g_EInitGremlin);
         self->flags |= FLAG_UNK_2000;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
 
         // Check whether to be fire or glow
         if (self->params) {
@@ -302,7 +302,7 @@ void EntityGremlinFire(Entity* self) {
 
     if (self->flags & FLAG_DEAD) {
         if (self->step != DEATH) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             SetStep(DEATH);
         }
     }
@@ -320,7 +320,7 @@ void EntityGremlinFire(Entity* self) {
         self->velocityY = rcos(self->rotate);
         self->rotate += BounceSpeed;
         if (!--self->ext.gremlinFire.timer) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             SetStep(DEATH);
         }
         break;

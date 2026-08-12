@@ -366,7 +366,7 @@ void EntityAxeKnightBlue(Entity* self) {
 
     if (self->flags & FLAG_DEAD && self->step != AXE_KNIGHT_DYING) {
         PlaySfxPositional(SFX_AXE_KNIGHT_DEATH);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->zPriority -= 0x10;
         self->ext.axeknight.unk80 = 65;
         SetStep(AXE_KNIGHT_DYING);
@@ -787,7 +787,7 @@ void func_us_801CBA30(Entity* self) {
         InitializeEntity(g_EInitAxeKnightAxe);
         self->animSet = 0;
         self->animCurFrame = 0;
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
         self->hitPoints = 0x7FFF;
         self->flags = FLAG_POS_CAMERA_LOCKED | FLAG_KEEP_ALIVE_OFFCAMERA |
                       FLAG_NOT_AN_ENEMY | FLAG_UNK_00200000 | FLAG_UNK_2000;

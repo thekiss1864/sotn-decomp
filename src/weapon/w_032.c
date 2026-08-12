@@ -30,7 +30,7 @@ void EntityWeaponAttack(Entity* self) {
         self->step = 2;
         self->ext.timer.t = 4;
         self->animCurFrame = 0;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
     }
     if (self->step == 0) {
         SetSpriteBank1(g_Animset);
@@ -69,10 +69,10 @@ void EntityWeaponAttack(Entity* self) {
             self->step = 2;
             self->ext.weapon.lifetime = 4;
             self->animCurFrame = 0;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
         }
         if (self->ext.weapon.anim < 4 && PLAYER.pose == 6) {
-            self->hitboxState = 4;
+            self->hitboxState = HITBOX_WEAPON_HIT;
         }
         self->drawFlags = PLAYER.drawFlags;
         self->scaleY = PLAYER.scaleY;

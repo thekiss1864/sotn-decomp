@@ -80,7 +80,7 @@ void EntityWeaponAttack(Entity* self) {
         }
         break;
     case 2:
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->posX.i.hi = PLAYER.posX.i.hi;
         self->posY.i.hi = PLAYER.posY.i.hi;
         if (self->poseTimer == 1 && self->pose == 3) {

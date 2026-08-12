@@ -1394,7 +1394,7 @@ block_159:
         }
         PLAYER.hitboxState = PLAYER.hitParams = 0;
     } else {
-        PLAYER.hitboxState = 1;
+        PLAYER.hitboxState = HITBOX_ACTIVE;
         PLAYER.hitParams = 0;
         PLAYER.hitPoints = 0;
     }

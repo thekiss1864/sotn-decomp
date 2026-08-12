@@ -330,7 +330,7 @@ void EntityHuntingGirl(Entity* self) {
     case HUNTING_GIRL_INIT:
         InitializeEntity(g_EInitHuntingGirl);
         self->hitboxWidth = self->hitboxHeight = 10;
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
 #ifdef STAGE_IS_DAI
         self->zPriority = 176;
 #endif
@@ -582,7 +582,7 @@ void EntityHuntingGirl(Entity* self) {
             for (count = 0; count < 3; count++, entity++) {
                 DestroyEntity(entity);
             }
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->ext.huntingGirl.attacking = false;
             for (prim = self->ext.huntingGirl.spiritPrim; prim;
                  prim = prim->next) {
@@ -685,7 +685,7 @@ void EntityHuntingGirlAttack(Entity* self) {
     if (!self->step) {
         InitializeEntity(g_EInitHuntingGirl);
         self->hitboxWidth = self->hitboxHeight = 2;
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
         self->ext.huntingGirl.attack = self->attack;
     }
     if (g_Player.status & (PLAYER_STATUS_WOLF_FORM | PLAYER_STATUS_BAT_FORM)) {

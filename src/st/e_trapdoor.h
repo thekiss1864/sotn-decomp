@@ -13,7 +13,7 @@ void EntityTrapDoor(Entity* self) {
         InitializeEntity(g_EInitStInteractable);
         self->animCurFrame = 27;
         self->zPriority = 0x6A;
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
         self->hitboxWidth = 16;
         self->hitboxHeight = 4;
 

@@ -219,8 +219,8 @@ void EntityParanthropus(Entity* self) {
     self->ext.paranthropus.lastFacingDirection = self->facingLeft;
     if (self->flags & FLAG_DEAD && self->step < DEATH) {
         ParanthropusSetStep(DEATH);
-        self->hitboxState = 0;
-        (self + 1)->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
+        (self + 1)->hitboxState = HITBOX_INACTIVE;
 
         // Spawn the skull entity which remains after death
         entity = AllocEntity(&g_Entities[160], &g_Entities[192]);
@@ -245,7 +245,7 @@ void EntityParanthropus(Entity* self) {
         if (self->params == 11) {
             self->zPriority++;
             self->animCurFrame = 0x2A;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->flags |= FLAG_DESTROY_IF_OUT_OF_CAMERA |
                            FLAG_DESTROY_IF_BARELY_OUT_OF_CAMERA |
                            FLAG_UNK_00200000 | FLAG_UNK_2000;

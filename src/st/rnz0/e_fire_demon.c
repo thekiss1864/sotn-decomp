@@ -418,7 +418,7 @@ void EntityFireDemonFireball(Entity* self) {
         }
         self->hitboxOffY = -self->hitboxHeight;
     } else {
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
     }
     if (self->step < 3) {
         self->hitboxOffY = 0;
@@ -760,13 +760,13 @@ void EntityFireDemon(Entity* self) {
     var_s2 = 8;
     if ((self->flags & FLAG_DEAD) && ((self->step) < 0x10)) {
         PlaySfxPositional(SFX_UNK_RNZ0_711);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         SetStep(FIRE_DEMON_DEAD);
     }
     switch (self->step) {
     case FIRE_DEMON_INIT:
         InitializeEntity(g_EInitFireDemon);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->ext.fireDemon.zPriority = self->zPriority;
         self->zPriority = 0x6E;
         self->ext.fireDemon.palOffMax = 3;
@@ -774,7 +774,7 @@ void EntityFireDemon(Entity* self) {
         self->ext.fireDemon.pal_offset = 1;
         self->ext.fireDemon.palDirection = 1;
         self->ext.fireDemon.palTimer = 2;
-        self->hitboxState = 3;
+        self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
         self->zPriority = self->ext.fireDemon.zPriority;
         self->animCurFrame = 3;
         SetStep(FIRE_DEMON_IDLE);
@@ -846,7 +846,7 @@ void EntityFireDemon(Entity* self) {
             self->velocityY += self->ext.fireDemon.accelerationY;
             self->ext.fireDemon.accelerationY += FIX(1.0 / 16);
             if (self->velocityY > 0) {
-                self->hitboxState = 3;
+                self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
                 self->animCurFrame = 0x13;
                 self->step_s++;
             }
@@ -1116,7 +1116,7 @@ void EntityFireDemon(Entity* self) {
         self->palette = PAL_FLAG(SECONDARY_PAL);
         self->blendMode = BLEND_ADD | BLEND_TRANSP;
         self->drawFlags = ENTITY_OPACITY;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->ext.fireDemon.palTimer = 7;
         if (self->ext.fireDemon.timer) {
             self->ext.fireDemon.timer--;
@@ -1130,7 +1130,7 @@ void EntityFireDemon(Entity* self) {
         break;
     case FIRE_DEMON_TYPE15:
         self->palette = PAL_FLAG(SECONDARY_PAL);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->ext.fireDemon.palTimer = 7;
         other = self->ext.fireDemon.unk9C.otherEnt;
         self->posX.i.hi = other->posX.i.hi;

@@ -546,7 +546,7 @@ void func_ptr_80170008(Entity* self) {
         if ((self->ext.weapon_030.unk90 | self->ext.weapon_030.unkA0) == 0) {
             self->attack = 4;
             self->attackElement = ELEMENT_HIT;
-            self->hitboxState = 2;
+            self->hitboxState = HITBOX_SOLID;
             self->nFramesInvincibility = 4;
             self->stunFrames = 4;
             self->hitEffect = 1;
@@ -829,7 +829,7 @@ void func_ptr_8017000C(Entity* self) {
         }
         self->attack = 4;
         self->attackElement = ELEMENT_HIT;
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
         self->nFramesInvincibility = 4;
         self->stunFrames = 4;
         self->hitEffect = 1;
@@ -922,7 +922,7 @@ s32 func_ptr_80170010(Entity* self) {
         self->facingLeft = (self->ext.weapon.parent->facingLeft + 1) & 1;
         SetSpeedX(FIX(3.5));
         self->attack = 0x14;
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
         self->nFramesInvincibility = 4;
         self->stunFrames = 4;
         self->attackElement = ELEMENT_HIT;
@@ -975,7 +975,7 @@ s32 func_ptr_80170010(Entity* self) {
         self->scaleX -= 16;
         self->scaleY = self->scaleX;
         if (self->scaleX < 0x40) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->animSet = 0;
             self->ext.weapon.lifetime = 0x80;
             self->step++;

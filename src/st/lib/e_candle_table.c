@@ -46,7 +46,7 @@ void EntityCandleTable(Entity* self) {
             self->hitboxHeight = 12;
             self->hitboxOffX = 0;
             self->hitboxOffY = -10;
-            self->hitboxState = 2;
+            self->hitboxState = HITBOX_SOLID;
             newEntity = self + 1;
             CreateEntityFromEntity(E_ID(CANDLE_TABLE), self, newEntity);
 
@@ -74,7 +74,7 @@ void EntityCandleTable(Entity* self) {
             newEntity->posY.i.hi -= 8;
             newEntity->params = 2;
         }
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->step++;
         /* fallthrough */
     case 3:

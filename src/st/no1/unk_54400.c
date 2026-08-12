@@ -32,7 +32,7 @@ void func_us_801D4558(Entity* self) {
     case 0:
         InitializeEntity(D_us_80180B18);
         self->ext.et_801D4558.unk80 = self->hitboxState;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->drawFlags = ENTITY_SCALEX | ENTITY_SCALEY;
 
         self->scaleX = 0;
@@ -56,7 +56,7 @@ void func_us_801D4558(Entity* self) {
         self->scaleX += 8;
         self->scaleY += 8;
         if (self->ext.et_801D4558.unk7C == 0x20) {
-            self->hitboxState = 2;
+            self->hitboxState = HITBOX_SOLID;
             self->drawFlags = ENTITY_DEFAULT;
         }
         if (self->ext.et_801D4558.unk7C == 0x28) {
@@ -133,7 +133,7 @@ void func_us_801D4950(Entity* self) {
     case 0:
         InitializeEntity(D_us_80180B18);
         self->blendMode = BLEND_TRANSP;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         break;
 
     case 1:

@@ -637,12 +637,12 @@ void EntityHammer(Entity* self) {
         case 0:
             for (ptr = partsList1; *ptr; ptr++) {
                 otherEnt = self + *ptr;
-                otherEnt->hitboxState = 0;
+                otherEnt->hitboxState = HITBOX_INACTIVE;
                 otherEnt->step = 24;
                 otherEnt->step_s = 0;
             }
             self->velocityY = FIX(-2);
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->flags |= FLAG_DESTROY_IF_OUT_OF_CAMERA;
             self->step_s++;
             /* fallthrough */
@@ -711,7 +711,7 @@ void EntityGurkhaBodyParts(Entity* self) {
             self->velocityY = speed * rsin(angle);
             self->ext.GH_Props.timer = (Random() & 0x1F) + 0x20;
             self->flags |= FLAG_DESTROY_IF_OUT_OF_CAMERA;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step_s++;
             break;
 
@@ -797,7 +797,7 @@ void EntityHammerWeapon(Entity* self) {
             self->velocityX = speed * rcos(angle) / 2;
             self->velocityY = speed * rsin(angle);
             self->flags |= FLAG_DESTROY_IF_OUT_OF_CAMERA;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step_s++;
             break;
 

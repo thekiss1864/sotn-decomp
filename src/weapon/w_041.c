@@ -182,7 +182,7 @@ Entity* func_123000_8017A994(Entity* self, s16 angleTarget, s16 tolerance) {
     entCount = 0;
     for (other = &g_Entities[64], i = 0; i < 128; i++, other++) {
         sp10[i] = 0;
-        if ((!other->entityId) || (other->hitboxState == 0) ||
+        if ((!other->entityId) || (other->hitboxState == HITBOX_INACTIVE) ||
             (other->flags & FLAG_UNK_00200000)) {
             continue;
         }

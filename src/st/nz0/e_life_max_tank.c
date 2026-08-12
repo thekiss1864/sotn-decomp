@@ -26,12 +26,12 @@ void EntityLifeMaxTank(Entity* self) {
         self->hitboxHeight = 12;
         self->hitboxOffX = 0;
         self->hitboxOffY = -10;
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
     case 1:
         AnimateEntity(D_80180F1C, self);
         if (self->hitFlags) {
             PlaySfxPositional(SFX_GLASS_BREAK_A);
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             SetStep(2);
         }
         break;

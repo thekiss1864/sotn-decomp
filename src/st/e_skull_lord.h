@@ -151,7 +151,7 @@ void EntitySkullLord(Entity* self) {
     case 4:
         switch (self->step_s) {
         case 0:
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->ext.skullLord.timer = 0x10;
             self->step_s++;
             // fallthrough
@@ -234,7 +234,7 @@ void EntitySkullLordOutline(Entity* self) {
     switch (self->step) {
     case 0:
         InitializeEntity(g_EInitSkullLordEffects);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->drawFlags = ENTITY_SCALEX | ENTITY_SCALEY;
         self->blendMode = BLEND_TRANSP | BLEND_QUARTER;
         if (self->params) {

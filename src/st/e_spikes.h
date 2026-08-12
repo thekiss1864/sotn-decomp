@@ -329,7 +329,7 @@ void EntitySpikesDamage(Entity* self) {
         InitializeEntity(g_EInitInteractable);
         self->attackElement = SPIKES_ELEMENT;
         self->attack = 15;
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
         self->hitboxWidth = 4;
         self->hitboxHeight = 4;
         self->poseTimer = 4;

@@ -65,7 +65,7 @@ void func_us_801BA290(Entity* self) {
         InitializeEntity(D_us_801809C8);
         self->animCurFrame = 0x3D;
         self->facingLeft = 1;
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
         self->hitPoints = 0x7FFE;
         self->hitboxWidth = 4;
         self->hitboxHeight = 4;
@@ -647,7 +647,7 @@ void func_us_801BA290(Entity* self) {
             primIndex = self->primIndex;
             g_api.FreePrimitives(primIndex);
             self->flags &= ~FLAG_HAS_PRIMS;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             g_PauseAllowed = true;
             self->step++;
             break;

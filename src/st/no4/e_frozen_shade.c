@@ -835,7 +835,7 @@ void EntityFrozenShade(Entity* self) {
 void EntityFrozenShadeCrystal(struct Entity* self) {
     if (!self->step) {
         InitializeEntity(g_EInitFrozenShadeCrystal);
-        self->hitboxState |= 6;
+        self->hitboxState |= HITBOX_WEAPON_HIT | HITBOX_SOLID;
     }
 }
 
@@ -983,7 +983,7 @@ void EntityFrozenShadeIcicle(Entity* self) {
         InitializeEntity(g_EInitFrozenShadeIcicle);
         self->primIndex = primIndex;
         self->flags |= FLAG_HAS_PRIMS;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         prim = &g_PrimBuf[primIndex];
         while (prim != NULL) {
             prim->drawMode = DRAW_HIDE;
@@ -1119,9 +1119,9 @@ void EntityFrozenShadeIcicleUnk(Entity* self) {
     self->posX.val = parent->posX.val;
     self->posY.val = parent->posY.val;
     if (parent->hitboxState) {
-        self->hitboxState = parent->hitboxState | 1;
+        self->hitboxState = parent->hitboxState | HITBOX_ACTIVE;
     } else {
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
     }
     UnkEntityFunc0(self->params, 0x1800);
     MoveEntity(self);

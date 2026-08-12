@@ -218,7 +218,7 @@ void EntityDraculaFinalForm(Entity* self) {
     s32 selfParams;
 
     if (self->flags & FLAG_DEAD) {
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         if (self->step < 6) {
             D_8003C744 = 3;
             SetStep(6);
@@ -239,7 +239,7 @@ void EntityDraculaFinalForm(Entity* self) {
         self->hitboxWidth = self->hitboxHeight = 16;
         self->hitboxOffX = -24;
         self->hitboxOffY = -16;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         if (!self->params) {
             D_8003C744 = 2;
             self->animCurFrame = 0;
@@ -267,7 +267,7 @@ void EntityDraculaFinalForm(Entity* self) {
         }
         if (D_80180910 != 0) {
             self->animCurFrame = 1;
-            self->hitboxState = 3;
+            self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
             self->opacity = 0x80;
             self->drawFlags = ENTITY_DEFAULT;
             SetStep(2);
@@ -619,7 +619,7 @@ void EntityDraculaFinalForm(Entity* self) {
         switch (self->step_s) {
         case 0:
             g_api.PlaySfx(SFX_DRACULA_MONSTER_ROAR);
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             part = self + 1;
             for (i = 0; i < 3; i++, part++) {
                 DestroyEntity(part);
@@ -889,7 +889,7 @@ void EntityDraculaRainAttack(Entity* self) {
     case 0:
         InitializeEntity(g_EInitDraculaRainAttack);
         if (self->params) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->animCurFrame = 0x59;
             rand = (Random() & 0x1F) + 0x10;
             angle = (Random() * 6) + 0x900;
@@ -1064,7 +1064,7 @@ void func_801AF774(Entity* self) {
     switch (self->step) {
     case 0:
         InitializeEntity(g_EInitDracula);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->animCurFrame = 0;
         self->blendMode |= BLEND_TRANSP | BLEND_ADD;
         self->flags &= ~FLAG_POS_CAMERA_LOCKED;

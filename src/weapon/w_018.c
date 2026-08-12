@@ -37,7 +37,7 @@ extern AnimationFrame D_82000_8017A6A8[];
 extern AnimationFrame D_82000_8017A6E4[];
 
 void EntityWeaponAttack(Entity* self) {
-    self->hitboxState = 0;
+    self->hitboxState = HITBOX_INACTIVE;
     switch (self->step) {
     // bat appears
     case 0:

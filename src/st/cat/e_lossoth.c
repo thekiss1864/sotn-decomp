@@ -260,7 +260,7 @@ void EntityLossoth(Entity* self) {
         switch (self->step_s) {
         case 0:
             self->animCurFrame = 0x2E;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->drawFlags |= ENTITY_OPACITY;
             self->opacity = 0x80;
 
@@ -378,7 +378,7 @@ void EntityLossothEffects(Entity* self) {
     switch (self->step) {
     case 0:
         InitializeEntity(g_EInitLossothEffects);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->blendMode = BLEND_TRANSP | BLEND_ADD;
         // fallthrough
     case 1:
@@ -647,7 +647,7 @@ void EntityLossothNapalmFlare(Entity* self) {
         self->hitboxHeight = 8;
         self->hitboxOffY = -8;
 #ifdef VERSION_US
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
 #endif
         primIndex = g_api.AllocPrimitives(PRIM_GT4, 0x10);
         if (primIndex == -1) {
@@ -724,7 +724,7 @@ void EntityLossothNapalmFlare(Entity* self) {
         }
         break;
     case 2:
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         if (!self->ext.lossothNapalm.unkA5) {
             DestroyEntity(self);
             return;
@@ -765,7 +765,7 @@ void EntityLossothFlames(Entity* self) {
         InitializeEntity(g_EInitLossoth);
 #ifdef VERSION_US
         self->flags |= FLAG_UNK_00200000 | FLAG_UNK_2000;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
 #else
         self->flags |= FLAG_UNK_2000;
 #endif

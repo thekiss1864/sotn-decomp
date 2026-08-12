@@ -463,7 +463,7 @@ void EntityKarasuman(Entity* self) {
         switch (self->step_s) {
         case 0:
             D_us_80181138 |= 2;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             for (i = 0; i < 32; i++) {
                 entity = AllocEntity(&g_Entities[160], &g_Entities[256]);
                 if (entity != NULL) {
@@ -712,7 +712,7 @@ void EntityKarasumanRavenAttack(Entity* self) {
     case 0:
         InitializeEntity(g_EInitKarasumanRavenAttack);
         if (self->params) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step = 8;
             return;
         }
@@ -859,7 +859,7 @@ void EntityKarasumanRavenAbsorb(Entity* self) {
         InitializeEntity(g_EInitKarasumanRavenAttack);
         self->blendMode = BLEND_TRANSP;
         self->drawFlags = ENTITY_ROTATE;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
 
         self->flags |= FLAG_DESTROY_IF_OUT_OF_CAMERA | FLAG_UNK_2000;
         if (self->params) {

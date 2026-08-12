@@ -185,7 +185,7 @@ void EntityDhuron(Entity* self) {
         break;
 
     case 8:
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         for (i = 0; i < 7; i++) {
             tempEntity = AllocEntity(&g_Entities[224], &g_Entities[256]);
             if (tempEntity != NULL) {

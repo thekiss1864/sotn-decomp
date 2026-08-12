@@ -20,7 +20,7 @@ void EntityWallGear(Entity* self) {
         self->animCurFrame = 0xC;
         self->drawFlags = ENTITY_ROTATE;
         self->velocityY = FIX(0.5);
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
         self->hitPoints = S16_MAX;
         self->hitboxWidth = self->hitboxHeight = 0x10;
         self->rotate = D_us_801C1680[self->params];
@@ -28,7 +28,7 @@ void EntityWallGear(Entity* self) {
         // fallthrough
 
     case 1:
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
 #ifdef VERSION_PSP
         if (self->params != 1 || self->posY.i.hi >= 97)
 #endif
@@ -42,7 +42,7 @@ void EntityWallGear(Entity* self) {
         break;
 
     case 2:
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->rotate += 16;
         if (!--self->ext.gearPuzzle.cooldownTimer) {
             self->rotate &= 0xFFF;

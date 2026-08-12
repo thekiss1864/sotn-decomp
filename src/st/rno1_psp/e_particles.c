@@ -25,7 +25,7 @@ void EntityEnemyBlood(Entity* self) {
             self->flags |= FLAG_HAS_PRIMS;
             self->primIndex = i;
             self->animSet = ANIMSET_DRA(0);
-            self->hitboxState = 1;
+            self->hitboxState = HITBOX_ACTIVE;
             self->ext.bloodDroplets.timer = 48;
             self->hitboxWidth = 0;
             self->hitboxHeight = 8;
@@ -87,7 +87,7 @@ void EntityEnemyBlood(Entity* self) {
 
         if (self->hitboxState) {
             if (!(g_Player.status & PLAYER_STATUS_ABSORB_BLOOD)) {
-                self->hitboxState = 0;
+                self->hitboxState = HITBOX_INACTIVE;
             } else {
                 self->velocityX += self->ext.bloodDroplets.speed;
 
@@ -103,7 +103,7 @@ void EntityEnemyBlood(Entity* self) {
                     self->hitboxWidth = self->ext.bloodDroplets.size / 2;
                     self->hitboxHeight = self->ext.bloodDroplets.size / 4 + 8;
                 } else {
-                    self->hitboxState = 0;
+                    self->hitboxState = HITBOX_INACTIVE;
                 }
 
                 if (self->hitFlags) {
@@ -116,7 +116,7 @@ void EntityEnemyBlood(Entity* self) {
                         }
                     }
                     g_Player.unk10++;
-                    self->hitboxState = 0;
+                    self->hitboxState = HITBOX_INACTIVE;
                 }
             }
         }

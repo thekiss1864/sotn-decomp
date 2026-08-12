@@ -305,7 +305,7 @@ void EntityNovaSkeletonDeathParts(Entity* self) {
         return;
     }
     InitializeEntity(g_EInitNovaSkeleton);
-    self->hitboxState = 0;
+    self->hitboxState = HITBOX_INACTIVE;
     self->flags |=
         FLAG_DESTROY_IF_OUT_OF_CAMERA | FLAG_DESTROY_IF_BARELY_OUT_OF_CAMERA |
         FLAG_UNK_00200000 | FLAG_UNK_2000;
@@ -364,7 +364,7 @@ void EntityNovaLaser(Entity* self) {
             self->ext.nova.laserLength += 0x10;
         } else {
             self->ext.nova.laserLength = 0x80;
-            self->hitboxState = 1;
+            self->hitboxState = HITBOX_ACTIVE;
             self->step++;
         }
     case LASER_2:
@@ -400,7 +400,7 @@ void EntityNovaLaser(Entity* self) {
             self->ext.nova.laserTimer = 1;
         }
         if (!--self->ext.nova.laserTimer) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step++;
         }
         break;
@@ -466,7 +466,7 @@ void EntityNovaLaserPulse(Entity* self) {
     switch (self->step) {
     case 0:
         InitializeEntity(g_EInitNovaSkeleton2);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->animCurFrame = 0x24;
         self->drawFlags |= ENTITY_SCALEY | ENTITY_SCALEX;
         self->scaleX = self->scaleY = 0x10;

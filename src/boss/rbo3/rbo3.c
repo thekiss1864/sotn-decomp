@@ -169,7 +169,7 @@ void EntityMedusa(Entity* self) {
     case 0:
         InitializeEntity(g_EInitMedusa);
         self->animCurFrame = 1;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         CreateEntityFromEntity(UNK_ENTITY_25, self, self + 1);
         SetStep(1);
         // fallthrough
@@ -183,7 +183,7 @@ void EntityMedusa(Entity* self) {
     case 2:
         // n.b.! AnimateEntity is not declared
         if (!AnimateEntity(PrizeDrops, self)) {
-            self->hitboxState = 3;
+            self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
             SetStep(3);
         }
         break;
@@ -320,7 +320,7 @@ void EntityMedusa(Entity* self) {
         switch (self->step_s) {
         case 0:
             PlaySfxPositional(SFX_MEDUSA_DEATH);
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             D_us_80180728 |= 2;
             self->step_s++;
             // fallthrough
@@ -459,7 +459,7 @@ void func_us_80192020(Entity* self) {
             var_a2 = 1;
         }
         if (var_a2) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step++;
         }
         break;
@@ -493,9 +493,9 @@ void func_us_801922EC(Entity* self) {
     self->facingLeft = prev->facingLeft;
 
     if (prev->ext.GS_Props.flag) {
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
     } else {
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
     }
 
     animCurFrame = prev->animCurFrame;

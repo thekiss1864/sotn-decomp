@@ -650,9 +650,9 @@ void EntityBlade(Entity* self) {
         case 0:
             for (ptr = D_80183494; *ptr; ptr++) {
                 ent_s0 = self + *ptr;
-                ent_s0->hitboxState = 0;
+                ent_s0->hitboxState = HITBOX_INACTIVE;
             }
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step_s++;
             /* fallthrough */
         case 1:
@@ -783,7 +783,7 @@ void EntityBladeWeapon(Entity* self) {
 
     case 24:
         self->flags |= FLAG_DESTROY_IF_BARELY_OUT_OF_CAMERA;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         break;
 
     case 8:

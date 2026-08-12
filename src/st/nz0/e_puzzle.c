@@ -87,7 +87,7 @@ void BoxPuzzleSpikes(Entity* self) {
         self->hitboxHeight = 12;
         self->attackElement = 1;
         self->attack = 7;
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
 
         primIndex = g_api.AllocPrimitives(PRIM_GT4, 1);
         if (primIndex == -1) {

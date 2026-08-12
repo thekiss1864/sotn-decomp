@@ -237,7 +237,7 @@ void EntityBonePillarSkull(Entity* self) {
             }
             if (self->flags & FLAG_DEAD) {
                 PlaySfxPositional(SFX_QUICK_STUTTER_EXPLODE_B);
-                self->hitboxState = 0;
+                self->hitboxState = HITBOX_INACTIVE;
                 self->drawFlags = ENTITY_DEFAULT;
                 self->step = BONE_PILLAR_INIT;
                 self->pfnUpdate = EntityExplosion;
@@ -304,7 +304,7 @@ void EntityBonePillarSpikeBall(Entity* self) {
         if (self->ext.bonePillar.bottomDead) {
             self->drawFlags = ENTITY_ROTATE;
             self->hitPoints = 32767;
-            self->hitboxState = 1;
+            self->hitboxState = HITBOX_ACTIVE;
             self->velocityX = FIX(-0.75);
             self->velocityY = FIX(-1.0);
             self->step++;
@@ -320,7 +320,7 @@ void EntityBonePillarSpikeBall(Entity* self) {
                 entity->attack = self->attack;
                 entity->hitboxWidth = self->hitboxWidth;
                 entity->hitboxHeight = self->hitboxHeight;
-                entity->hitboxState = 2;
+                entity->hitboxState = HITBOX_SOLID;
                 entity->attackElement = ELEMENT_FIRE;
                 entity->nFramesInvincibility = 16;
                 entity->stunFrames = 4;
@@ -442,7 +442,7 @@ void EntityBonePillarFireBreath(Entity* self) {
         PlaySfxPositional(SFX_FIREBALL_SHOT_A);
     case BONE_PILLAR_FIRE_BREATH:
         if (!AnimateEntity(anim_fire_breath, self)) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step++;
             return;
         }
@@ -502,7 +502,7 @@ void EntityBonePillarDeathParts(Entity* self) {
     switch (self->step) {
     case BONE_PILLAR_DEATH_INIT:
         InitializeEntity(g_EInitBonePillarParts);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->animCurFrame = (self->params & 0xF) + 18;
         self->zPriority += self->params & 0xF;
         if (self->params & 1) {

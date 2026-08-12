@@ -25,7 +25,7 @@ void EntityBreakableWall(Entity* self) {
         self->hitboxHeight = 0x18;
         self->hitboxOffX = 8;
         self->hitboxOffY = 0;
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
         if (!self->params) {
             if (g_CastleFlags[OVL_EXPORT(SECRET_WALL_1_BROKEN)]) {
                 wallStatus = 3;

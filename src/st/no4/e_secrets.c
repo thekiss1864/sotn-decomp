@@ -60,7 +60,7 @@ void EntityBreakableCrystalFloor(Entity* self) {
         InitializeEntity(g_EInitInteractable);
         self->hitboxWidth = 16;
         self->hitboxHeight = 16;
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
         if (g_CastleFlags[NO4_SECRET_FLOOR_OPEN]) {
             i = 0x12;
         } else {
@@ -147,7 +147,7 @@ void EntityBreakableWall(Entity* self) {
         InitializeEntity(g_EInitInteractable);
         self->hitboxWidth = 8;
         self->hitboxHeight = 0x20;
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
         if (g_CastleFlags[NO4_SECRET_WALL_OPEN]) {
             i = 0x18;
         } else {

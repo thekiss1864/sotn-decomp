@@ -67,7 +67,7 @@ void MarSetSubweaponParams(Entity* entity) {
     SubweaponDef* subwpn = &subweapons_def[entity->ext.subweapon.subweaponId];
     entity->attack = subwpn->attack;
     entity->attackElement = subwpn->attackElement;
-    entity->hitboxState = subwpn->hitboxState | 1;
+    entity->hitboxState = subwpn->hitboxState | HITBOX_ACTIVE;
     entity->flags |= FLAG_NOT_AN_ENEMY;
     entity->nFramesInvincibility = subwpn->nFramesInvincibility;
     entity->stunFrames = subwpn->stunFrames;
@@ -322,7 +322,7 @@ void MarUpdatePlayerEntities(void) {
         entity = &g_Entities[(STAGE_ENTITY_START + 4)];
         for (i = (STAGE_ENTITY_START + 4); i < (STAGE_ENTITY_START * 2); i++,
             entity++) {
-            entity->hitboxState = 0;
+            entity->hitboxState = HITBOX_INACTIVE;
         }
     }
 }
@@ -525,7 +525,7 @@ void MarEntitySlideKick(Entity* entity) {
         }
         entity->hitboxState = entity->ext.subweapon.timer;
         if (MARIA.pose < 2) {
-            entity->hitboxState = 0;
+            entity->hitboxState = HITBOX_INACTIVE;
         }
         if (MARIA.pose > 7) {
             DestroyEntity(entity);
@@ -3038,7 +3038,7 @@ void func_pspeu_09250D30(Entity* self) {
     if (self->step == 0) {
         self->attack = 30;
         self->attackElement = ELEMENT_HIT;
-        self->hitboxState = 3;
+        self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
         self->flags |= FLAG_NOT_AN_ENEMY;
         self->nFramesInvincibility = 16;
         self->stunFrames = 16;

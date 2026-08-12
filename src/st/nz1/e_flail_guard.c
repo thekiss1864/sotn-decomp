@@ -122,7 +122,7 @@ void EntityFlailGuard(Entity* self) {
 
     case 5:
         InitializeEntity(g_EInitFlailGuard);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->animCurFrame = self->params + 8;
         self->flags |=
             FLAG_DESTROY_IF_OUT_OF_CAMERA | FLAG_UNK_00200000 | FLAG_UNK_2000;
@@ -217,7 +217,7 @@ void EntityFlailGuardFlail(Entity* self) {
 
     switch (parent->animCurFrame) {
     case 6:
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
         self->animCurFrame = 17;
         self->attack = self->ext.flailGuardFlail.prevAttack;
         if (parent->facingLeft) {
@@ -238,7 +238,7 @@ void EntityFlailGuardFlail(Entity* self) {
     case 2:
     case 3:
     case 4:
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
         self->animCurFrame = 17;
         self->attack = self->ext.flailGuardFlail.prevAttack / 8;
         if (parent->facingLeft) {
@@ -265,7 +265,7 @@ void EntityFlailGuardFlail(Entity* self) {
         break;
     case 5:
         self->ext.flailGuardFlail.unk7E = 0x200;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->animCurFrame = 0;
         break;
 
@@ -278,7 +278,7 @@ void EntityFlailGuardFlail(Entity* self) {
         // fallthrough
 
     default:
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->animCurFrame = 0;
         break;
     }

@@ -462,7 +462,7 @@ void EntityMinotaur(Entity* self) {
     case DEATH:
         switch (self->step_s) {
         case 0:
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->velocityX = 0;
             self->velocityY = 0;
             self->step_s++;
@@ -549,7 +549,7 @@ void EntityMinotaurAttackHitbox(Entity* self) {
         self->facingLeft = parent->facingLeft;
         self->posX.val = parent->posX.val;
         self->posY.val = parent->posY.val;
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
 
         ptr = *attack_hitboxes;
         ptr += attack_hitbox_indices[animCurFrame] * 4;

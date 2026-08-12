@@ -108,7 +108,7 @@ void EntityFakeGrant(Entity* self) {
     switch (self->step) {
     case 0:
         InitializeEntity(D_us_801804B8);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         entity = self - 1;
         CreateEntityFromCurrentEntity(E_ID(COFFIN), entity);
         entity->posY.i.hi = 0xBA - g_Tilemap.scrollY.i.hi;
@@ -141,7 +141,7 @@ void EntityFakeGrant(Entity* self) {
             break;
         case 2:
             if (D_us_801806B0 & 2) {
-                self->hitboxState = 3;
+                self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
                 SetStep(3);
             }
             break;
@@ -342,7 +342,7 @@ void EntityFakeGrant(Entity* self) {
         case 0:
             self->drawFlags = ENTITY_DEFAULT;
             if (self->step == 0xB) {
-                self->hitboxState = 0;
+                self->hitboxState = HITBOX_INACTIVE;
                 D_us_801806B4++;
             }
             if (GetSideToPlayer() & 1) {
@@ -467,7 +467,7 @@ void EntityVerticalDagger(Entity* self) {
                 self->velocityX = FIX(-2.0);
             }
             self->velocityY = FIX(-2.0);
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step += 1;
         }
         break;
@@ -514,7 +514,7 @@ void EntityHorizontalDagger(Entity* self) {
     case 1:
         MoveEntity();
         if (self->flags & FLAG_DEAD) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->velocityX = -self->velocityX / 4;
             self->velocityY = FIX(-4);
             self->flags |= FLAG_DESTROY_IF_OUT_OF_CAMERA;
@@ -561,16 +561,16 @@ void func_us_80197764(Entity* self) {
         InitializeEntity(D_us_80180524);
         self->hitboxWidth = 0x10;
         self->hitboxHeight = 0x10;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
     }
     parent = self - 1;
     self->posX.i.hi = parent->posX.i.hi;
     self->posY.i.hi = parent->posY.i.hi;
     animCurFrame = parent->animCurFrame;
     if (animCurFrame == 0x8A || animCurFrame == 0x89) {
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
     } else {
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
     }
     if (parent->entityId != E_ID(FAKE_GRANT)) {
         DestroyEntity(self);

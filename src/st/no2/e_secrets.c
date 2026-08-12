@@ -181,7 +181,7 @@ void func_us_801B5FB8(Entity* self) {
             return;
         }
         self->zPriority = 0xA8;
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
         self->hitPoints = 0x7FFF;
         self->hitboxWidth = 0x10;
         self->hitboxHeight = 0x28;
@@ -195,7 +195,7 @@ void func_us_801B5FB8(Entity* self) {
             self->step++;
         }
         if (self->ext.breakableNo2.unk88 == 3) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step = 3;
         }
         break;
@@ -327,7 +327,7 @@ void func_us_801B65A4(Entity* self) {
     switch (self->step) {
     case 0:
         InitializeEntity(g_EInitEnvironment);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->animCurFrame = 0;
         break;
 
@@ -460,7 +460,7 @@ void func_us_801B68EC(Entity* self) {
             tileIdx = D_us_80180E14[i];
             g_Tilemap.fg[tileIdx] = D_us_80180E24[0][i];
         }
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
         self->hitPoints = 0x80;
         self->hitboxWidth = 0x10;
         self->hitboxHeight = 0x28;

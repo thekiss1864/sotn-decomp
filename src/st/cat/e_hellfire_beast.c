@@ -243,7 +243,7 @@ void EntityHellfireBeast(Entity* self) {
             entity = self->ext.hellfireBeast.attackEntity;
             DestroyEntity(entity);
         }
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->ext.hellfireBeast.timer = 0x100;
         PlaySfxPositional(SFX_HELLFIRE_BEAST_DEATH);
         SetStep(DEATH_INIT);
@@ -541,7 +541,7 @@ void EntityHellfireBeast(Entity* self) {
     case DEATH_PARTS_DROP:
         // Death parts are spawned with params 0-5 (6 total)
         InitializeEntity(g_EInitHellfireBeast);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->animCurFrame = self->params + 0x2B;
         self->ext.hellfireBeast.timer = death_parts_timer[self->params];
         if (self->params < 3) {
@@ -691,7 +691,7 @@ void EntityHellfireBeastThorsHammer(Entity* self) {
         self->ext.hellfireBeastThorsHammer.unk8C = 0;
         self->ext.hellfireBeastThorsHammer.unk90 = 0;
         self->ext.hellfireBeastThorsHammer.unk8A = 4;
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
         self->ext.hellfireBeastThorsHammer.castTimer = 0x80;
         self->step++;
         // fallthrough
@@ -1183,7 +1183,7 @@ void EntityHellfireBeastFlamePillar(Entity* self) {
         }
         if (self->ext.hellfireBeastFlamePillar.castTimer > 0x60) {
             self->ext.hellfireBeastFlamePillar.unk80--;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             if (self->ext.hellfireBeastFlamePillar.unk80 < 0) {
                 DestroyEntity(self);
             }
@@ -1207,9 +1207,9 @@ void EntityHellfireBeastPunchHitbox(Entity* self) {
     self->posY.i.hi = hellfireBeast->posY.i.hi;
     self->facingLeft = hellfireBeast->facingLeft;
     if (hellfireBeast->animCurFrame == 0x23) {
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
     } else {
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
     }
     if (!hellfireBeast->entityId) {
         DestroyEntity(self);

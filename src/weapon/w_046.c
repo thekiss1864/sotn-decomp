@@ -429,7 +429,7 @@ static s32 func_ptr_80170004(Entity* self) {
             self->ext.weapon_046.unk94 = self->ext.weapon_046.unk90;
         }
         if (self->ext.weapon_046.unk98 < 0x80) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
         }
         if (self->ext.weapon_046.unk98 <= 0) {
             DestroyEntity(self);

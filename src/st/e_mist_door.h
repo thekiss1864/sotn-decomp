@@ -45,7 +45,7 @@ void EntityMistDoor(Entity* self) {
 
     if (!self->step) {
         InitializeEntity(g_EInitInteractable);
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
         self->hitPoints = 0x7FFF;
         self->attack = 0;
         self->hitboxWidth = 0xC;
@@ -82,7 +82,7 @@ void EntityMistDoor(Entity* self) {
             }
 #endif
             messageBox->params = 0x100;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
         }
     }
 }

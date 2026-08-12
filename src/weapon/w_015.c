@@ -92,7 +92,7 @@ void EntityWeaponAttack(Entity* self) {
 
         if (self->hitFlags != 0) {
             self->ext.weapon.lifetime = 24;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->drawFlags |= ENTITY_BLINK;
             self->step++;
         }
@@ -224,7 +224,7 @@ void func_ptr_8017000C(Entity* self) {
 
         self->attack = 1;
         self->attackElement = ELEMENT_HIT;
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
         self->nFramesInvincibility = 20;
         self->stunFrames = 4;
         self->hitEffect = 1;
@@ -342,7 +342,7 @@ void func_ptr_8017000C(Entity* self) {
         break;
 
     case 2:
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         if ((self->ext.weapon.unk7E & 7) == 0) {
             g_api.PlaySfx(SFX_FM_EXPLODE_B);
         }
@@ -364,7 +364,7 @@ void func_ptr_8017000C(Entity* self) {
         break;
 
     case 3:
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         // the last three bits of weapon lifetime need to be zero.
         if ((self->ext.weapon.lifetime & 7) == 0) {
             g_api.PlaySfx(SFX_FM_EXPLODE_B);

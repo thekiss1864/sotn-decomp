@@ -57,7 +57,7 @@ void EntityToad(Entity* self) {
             self->hitboxHeight = 3;
             self->hitboxOffY = -1;
             self->hitPoints = 0x7FFF;
-            self->hitboxState = 1;
+            self->hitboxState = HITBOX_ACTIVE;
             self->step = 6;
             self->animCurFrame = 0;
         }

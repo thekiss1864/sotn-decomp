@@ -291,7 +291,7 @@ void EntityBell(Entity* self) {
     self->hitboxHeight /= 2;
     self->hitboxOffY = (tempPosY - 8) - self->posY.i.hi;
     self->hitboxOffY += self->hitboxHeight;
-    self->hitboxState = 1;
+    self->hitboxState = HITBOX_ACTIVE;
     sfxFlag = false;
     switch (self->ext.bell.step) {
     case BELL_NEUTRAL:

@@ -51,13 +51,13 @@ void EntityStairwayPiece(Entity* self) {
         self->posY.i.hi = YPOS - g_Tilemap.scrollY.i.hi;
         self->hitPoints = 16;
         if (g_CastleFlags[CASTLE_FLAG]) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             g_Tilemap.fg[TILE1] = 0x3EE;
             g_Tilemap.fg[TILE2] = 0x3D2;
             self->step = 32;
             break;
         }
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
         g_Tilemap.fg[TILE1] = 0x408;
         g_Tilemap.fg[TILE2] = 0x40D;
         break;

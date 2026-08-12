@@ -418,7 +418,7 @@ void EntityFrozenHalf(Entity* self) {
             entity->step = DEATH;
             entity->flags |= FLAG_UNK_2000;
 
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             if (self->facingLeft) {
                 self->velocityX = FIX(1.0);
             } else {
@@ -828,7 +828,7 @@ void EntityFrozenHalfFallingIce(Entity* self) {
     case 0:
         InitializeEntity(g_EInitFrozenHalfFallingIce);
         if (self->params) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->animCurFrame = 0x16;
             self->blendMode = BLEND_QUARTER | BLEND_TRANSP;
             self->step = 2;

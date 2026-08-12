@@ -134,7 +134,7 @@ static Entity* FindValidTarget(Entity* self) {
         // Very similar code to CheckAllEntitiesValid
         if (!entity->entityId)
             continue;
-        if (entity->hitboxState == 0)
+        if (entity->hitboxState == HITBOX_INACTIVE)
             continue;
         if (entity->flags & FLAG_UNK_00200000)
             continue;

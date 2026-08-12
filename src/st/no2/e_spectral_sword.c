@@ -245,7 +245,7 @@ void EntitySpectralSword(Entity* self) {
     case 8:
         switch (self->step_s) {
         case 0:
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             ent = self + 1;
             for (i = 0; i < 15; i++, ent++) {
                 ent->flags |= FLAG_DEAD;
@@ -417,7 +417,7 @@ void EntityPoltergeist(Entity* self) {
         self->hitboxOffY = *hitboxPtr++;
         self->hitboxWidth = *hitboxPtr++;
         self->hitboxHeight = *hitboxPtr++;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->ext.spectralSword.timer = 0x40;
         self->step = 1;
         break;
@@ -440,7 +440,7 @@ void EntityPoltergeist(Entity* self) {
         mag2 = mag / 2; // ????
         mag2 = mag;
         if (!--self->ext.spectralSword.timer) {
-            self->hitboxState = 3;
+            self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
         }
         if (mag2 > 0x38) {
             mag2 = 0x38;
@@ -496,7 +496,7 @@ void EntityPoltergeist(Entity* self) {
         case 0:
             tempEntity = self - self->params;
             tempEntity->ext.spectralSword.weaponCount--;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             PlaySfxPositional(SFX_EXPLODE_B);
             self->step_s++;
             /* fallthrough */

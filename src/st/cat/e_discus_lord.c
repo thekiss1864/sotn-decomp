@@ -56,7 +56,7 @@ void EntityDiscusLord(Entity* self) {
 
     discus = self + 1;
     if (self->flags & FLAG_DEAD && self->step < 0x10) {
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         discus->flags |= FLAG_DEAD;
         self->flags &= ~(FLAG_UNK_20000000 | FLAG_UNK_200);
         self->flags |= FLAG_UNK_2000;
@@ -287,7 +287,7 @@ void EntityDiscusLord(Entity* self) {
     case 17:
         // Body part death routine
         InitializeEntity(g_EInitDiscusLord);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->flags &= ~(FLAG_UNK_20000000 | FLAG_UNK_200);
         self->flags |= FLAG_UNK_00200000 | FLAG_UNK_2000;
         self->drawFlags |= ENTITY_OPACITY | ENTITY_ROTATE;
@@ -805,7 +805,7 @@ void EntityDiscus(Entity* self) {
 void EntityDiscusTrail(Entity* self) {
     if (!self->step) {
         InitializeEntity(g_EInitDiscus);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->blendMode |= BLEND_TRANSP | BLEND_ADD;
         self->drawFlags |= ENTITY_OPACITY | ENTITY_ROTATE;
         self->opacity = 0x30;
@@ -839,7 +839,7 @@ void EntityDiscusChain(Entity* self) {
     if (!self->step) {
         InitializeEntity(g_EInitDiscus);
         self->animCurFrame = 0xF;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->zPriority = discus->zPriority + 1;
         primIndex = g_api.AllocPrimitives(PRIM_LINE_G2, 1);
         if (primIndex != -1) {

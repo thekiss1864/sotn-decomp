@@ -97,7 +97,7 @@ void EntityPendulumWeight(Entity* self) {
     case 0:
         InitializeEntity(g_EInitEnvironment);
         self->hitboxWidth = self->hitboxHeight = 0xC;
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
         self->animCurFrame = 0xB;
         self->drawFlags = ENTITY_ROTATE;
         // fallthrough

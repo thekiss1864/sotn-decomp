@@ -90,7 +90,7 @@ void EntityElevator(Entity* self) {
         self->ext.topElevator.playerCollision = isPlayerTouching;
     } else {
         InitializeEntity(g_EInitElevator);
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
         self->ext.topElevator.unk88 = 0;
         self->ext.topElevator.movingUp = false;
     }

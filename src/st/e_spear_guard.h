@@ -137,7 +137,7 @@ void EntitySpearGuard(Entity* self) {
     if ((self->step < 12) && (self->flags & FLAG_DEAD)) {
         DestroyEntity(tempEntity);
         SetStep(12);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->ext.spearGuard.unk7C = 0x40;
         self->drawFlags = ENTITY_OPACITY;
         self->opacity = 0x7F;
@@ -266,10 +266,10 @@ void EntitySpearGuard(Entity* self) {
         if ((g_Timer & 0x1F) == 0) {
             PlaySfxPositional(SFX_WEAPON_SWISH_A);
         }
-        tempEntity->hitboxState |= 2;
+        tempEntity->hitboxState |= HITBOX_SOLID;
         tempEntity->flags |= FLAG_UNK_8000 | FLAG_UNK_4000;
         if (!AnimateEntity(anim5, self)) {
-            tempEntity->hitboxState &= 0xFFFD;
+            tempEntity->hitboxState &= ~HITBOX_SOLID;
             tempEntity->flags &= ~(FLAG_UNK_8000 | FLAG_UNK_4000);
             SetStep(5);
         }
@@ -293,13 +293,13 @@ void EntitySpearGuard(Entity* self) {
                 }
                 tempEntity->attack = g_api.enemyDefs[95].attack;
                 tempEntity->attackElement = g_api.enemyDefs[95].attackElement;
-                tempEntity->hitboxState |= 2;
+                tempEntity->hitboxState |= HITBOX_SOLID;
                 self->ext.spearGuard.unk90 = 1;
             }
             if (tempVar == 4) {
                 self->ext.spearGuard.unk90 = 0;
                 tempEntity->attack = 3;
-                tempEntity->hitboxState &= 0xFFFD;
+                tempEntity->hitboxState &= ~HITBOX_SOLID;
             }
         }
         if (self->velocityX != 0) {
@@ -386,7 +386,7 @@ void EntitySpearGuardBlock(Entity* self) {
 
     if (!self->step) {
         InitializeEntity(g_EInitInteractable);
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
     }
     if (!(self->hitFlags & 0x80) && self->hitFlags) {
         PlaySfxPositional(SFX_METAL_CLANG_E);
@@ -442,7 +442,7 @@ void EntityThrownSpear(Entity* self) {
             self->velocityX = FIX(-6.0);
         }
         self->animCurFrame = 0x36;
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
         self->step++;
         break;
 

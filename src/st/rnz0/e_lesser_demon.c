@@ -47,7 +47,7 @@ void InitializeMinion(s16* unkArg) {
     switch (g_CurrentEntity->step_s) {
     case 0:
         g_CurrentEntity->animCurFrame = 0;
-        g_CurrentEntity->hitboxState = 0;
+        g_CurrentEntity->hitboxState = HITBOX_INACTIVE;
         g_CurrentEntity->drawFlags |= ENTITY_OPACITY;
         g_CurrentEntity->opacity = 0;
         g_CurrentEntity->step_s++;
@@ -81,7 +81,7 @@ void InitializeMinion(s16* unkArg) {
         }
         if (!(--g_CurrentEntity->ext.lesserDemon.unkAC)) {
             g_CurrentEntity->palette = g_EInitLesserDemon[3];
-            g_CurrentEntity->hitboxState = 3;
+            g_CurrentEntity->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
             SetStep(1);
         }
         break;
@@ -294,7 +294,7 @@ void EntityLesserDemonSpit(Entity* self) {
         if (!--self->ext.lesserDemon.timer) {
             self->pose = 0;
             self->poseTimer = 0;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step++;
             prim->drawMode = DRAW_HIDE;
         } else {
@@ -1016,7 +1016,7 @@ void EntityLesserDemon(Entity* self) {
             g_api.FreePrimitives(self->primIndex);
             self->flags &= ~FLAG_HAS_PRIMS;
         }
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         SetStep(15);
     }
     switch (self->step) {
@@ -1031,7 +1031,7 @@ void EntityLesserDemon(Entity* self) {
         if (self->params & PARAM_IS_MINION) {
             self->animCurFrame = 0;
             self->step = LD_STEP_MINION_INIT;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
         }
         break;
     case LD_STEP_MINION_INIT:
@@ -1273,7 +1273,7 @@ void EntityLesserDemon(Entity* self) {
                 tempEntity->posX.i.hi = self->posX.i.hi;
                 tempEntity->posY.i.hi = self->posY.i.hi;
                 tempEntity->facingLeft = self->facingLeft;
-                tempEntity->hitboxState = 1;
+                tempEntity->hitboxState = HITBOX_ACTIVE;
                 self->ext.lesserDemon.unk87 = 1;
                 if (self->facingLeft) {
                     EntityGreyPuffSpawner(self, 5, 3, -4, 32, 2, 7);
@@ -1281,7 +1281,7 @@ void EntityLesserDemon(Entity* self) {
                     EntityGreyPuffSpawner(self, 5, 3, 4, 32, 2, -7);
                 }
             } else {
-                tempEntity->hitboxState = 0;
+                tempEntity->hitboxState = HITBOX_INACTIVE;
             }
             break;
         }
@@ -1535,6 +1535,6 @@ void EntityLesserDemonDummy(Entity* self) {
         self->hitboxWidth = 0x1C;
         self->hitboxHeight = 4;
         self->hitboxOffX = -0x14;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
     }
 }

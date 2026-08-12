@@ -397,7 +397,7 @@ void EntityVenusWeed(Entity* self) {
     case VENUS_WEED_THORNWEED_DISGUISE:
         AnimateEntity(&AnimFrames_ThornweedDisguise, self);
         if (GetDistanceToPlayerX() < ActivateDistanceX) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             SetStep(VENUS_WEED_GROW);
         }
 
@@ -743,14 +743,14 @@ void EntityVenusWeedFlower(Entity* self) {
         self->animCurFrame = AnimFrameInit;
         self->drawFlags |= ENTITY_SCALEX | ENTITY_SCALEY;
         self->scaleX = self->scaleY = 0;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         break;
 
     case GROW:
         self->scaleX = self->scaleY += GrowSpeed;
         if (self->scaleX >= GrowLimit) {
             self->drawFlags = ENTITY_DEFAULT;
-            self->hitboxState = 3;
+            self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
 
             PlaySfxPositional(SFX_MAGIC_WEAPON_APPEAR_A);
             SetStep(REVEAL);
@@ -1008,7 +1008,7 @@ void EntityVenusWeedFlower(Entity* self) {
         }
 
         PlaySfxPositional(SFX_FM_EXPLODE_B);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
 
         entity = AllocEntity(&g_Entities[224], &g_Entities[256]);
         if (entity != NULL) {
@@ -1279,7 +1279,7 @@ void EntityVenusWeedDart(Entity* self) {
             if (self->velocityY < 0) {
                 self->posY.i.hi += collider.unk20;
             }
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->ext.venusWeedDart.clutIndex = ClutIdxWallHit;
             SetStep(DEATH);
         }
@@ -1290,7 +1290,7 @@ void EntityVenusWeedDart(Entity* self) {
             self->ext.venusWeedDart.nextPosDeltaY =
                 entity->posY.i.hi - self->posY.i.hi;
             self->ext.venusWeedDart.clutIndex = ClutIdxPlayerHit;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             SetStep(DECAY);
             break;
         }
@@ -1358,7 +1358,7 @@ void EntityVenusWeedSpike(Entity* self) {
         InitializeEntity(g_EInitVenusWeedFlower);
 
         self->flags |= FLAG_UNK_2000 | FLAG_UNK_00200000;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->palette = PAL_FLAG(SPIKE_CLUT_START);
 
         primIdx = g_api.AllocPrimitives(PRIM_GT4, SpikeParts);

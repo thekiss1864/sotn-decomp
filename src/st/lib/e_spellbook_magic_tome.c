@@ -239,7 +239,7 @@ void EntitySpellbook(Entity* self) {
     switch (self->step) {
     case 0:
         InitializeEntity(g_EInitSpellbook);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         primIndex = g_api.AllocPrimitives(PRIM_GT4, 0xC);
         if (primIndex == -1) {
             DestroyEntity(self);
@@ -286,7 +286,7 @@ void EntitySpellbook(Entity* self) {
         self->ext.spellbookMagicTome.unk8A -= 0x10;
         if (self->ext.spellbookMagicTome.unk8A < 0) {
             self->ext.spellbookMagicTome.unk8A = 0;
-            self->hitboxState = 3;
+            self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
             SetStep(4);
         }
         break;
@@ -397,7 +397,7 @@ void EntitySpellbook(Entity* self) {
             self->ext.spellbookMagicTome.unkA4.vy = 0x40;
             self->ext.spellbookMagicTome.unkA4.vz = 0x40;
             self->ext.spellbookMagicTome.unk80 = 0x80;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step_s++;
             /* fallthrough */
         case 1:
@@ -532,7 +532,7 @@ void EntityMagicTome(Entity* self) {
     switch (self->step) {
     case 0:
         InitializeEntity(g_EInitMagicTome);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         primIndex = g_api.AllocPrimitives(PRIM_GT4, 0xC);
         if (primIndex == -1) {
             DestroyEntity(self);
@@ -579,7 +579,7 @@ void EntityMagicTome(Entity* self) {
         self->ext.spellbookMagicTome.unk8A -= 0x10;
         if (self->ext.spellbookMagicTome.unk8A < 0) {
             self->ext.spellbookMagicTome.unk8A = 0;
-            self->hitboxState = 3;
+            self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
             SetStep(4);
         }
         break;
@@ -695,7 +695,7 @@ void EntityMagicTome(Entity* self) {
             self->ext.spellbookMagicTome.unkA4.vy = 0x40;
             self->ext.spellbookMagicTome.unkA4.vz = 0x40;
             self->ext.spellbookMagicTome.unk80 = 0x80;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step_s++;
             /* fallthrough */
         case 1:
@@ -756,7 +756,7 @@ void func_us_801D35B8(Entity* self) {
         break;
 
     case 1:
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         if (self->ext.spellbookMagicTome.unk94) {
             PlaySfxPositional(SFX_MAGIC_TOME_ATTACK);
             SetStep(2);
@@ -792,7 +792,7 @@ void func_us_801D35B8(Entity* self) {
                 self->step_s = 2;
             }
             if (self->scaleX > 0x80) {
-                self->hitboxState = 1;
+                self->hitboxState = HITBOX_ACTIVE;
                 rotate = self->rotate - ptr->unk6;
                 temp_s5 = ptr->unk8;
                 x = (temp_s5 * self->scaleX * rcos(rotate)) >> 0x14;
@@ -802,13 +802,13 @@ void func_us_801D35B8(Entity* self) {
             }
             tempEntity = self - 1;
             if (tempEntity->flags & FLAG_DEAD) {
-                self->hitboxState = 0;
+                self->hitboxState = HITBOX_INACTIVE;
                 self->step_s = 2;
             }
             break;
 
         case 2:
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->scaleX = self->scaleY -= 4;
             tempEntity = self - 1;
             if (tempEntity->flags & FLAG_DEAD) {

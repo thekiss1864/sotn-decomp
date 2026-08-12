@@ -46,7 +46,7 @@ static Entity* FindValidTarget(Entity* self) {
         if (!entity->entityId) {
             continue;
         }
-        if (entity->hitboxState == 0) {
+        if (entity->hitboxState == HITBOX_INACTIVE) {
             continue;
         }
         if (entity->flags & FLAG_UNK_00200000) {
@@ -1165,7 +1165,7 @@ void UpdateSubentitySwitch(Entity* self) {
             self->hitboxHeight = 2;
             self->attack = 0;
             self->attackElement = ELEMENT_HIT;
-            self->hitboxState = 2;
+            self->hitboxState = HITBOX_SOLID;
             self->nFramesInvincibility = 0;
             self->stunFrames = 0;
             self->hitEffect = 7;

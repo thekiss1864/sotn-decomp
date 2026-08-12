@@ -529,7 +529,7 @@ void EntitySalemWitch(Entity* self) {
             entity = self + 1;
             entity->step = DEATH;
 
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
 
             // Knockback
             if (self->facingLeft) {
@@ -571,7 +571,7 @@ void EntitySalemWitch(Entity* self) {
     case SHADOW_INIT:
         InitializeEntity(g_EInitSalemWitch);
         self->flags |= FLAG_UNK_2000;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->animCurFrame = self->params;
         self->blendMode = BLEND_TRANSP | BLEND_ADD;
         self->drawFlags = ENTITY_OPACITY;
@@ -609,7 +609,7 @@ void EntitySalemWitchGlow(Entity* self) {
     if (!self->step) {
         InitializeEntity(g_EInitSalemWitch);
         self->flags |= FLAG_UNK_2000;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->blendMode = BLEND_TRANSP | BLEND_QUARTER;
     }
 
@@ -978,7 +978,7 @@ void EntitySalemWitchTriboltProjectile(Entity* self) {
 
     case TRAIL_INIT:
         InitializeEntity(g_EInitSalemWitchTribolt);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->animCurFrame = self->params;
         self->blendMode = BLEND_TRANSP | BLEND_ADD;
         self->drawFlags = ENTITY_ROTATE;

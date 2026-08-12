@@ -11,13 +11,13 @@ void EntityStairSwitch(Entity* self) {
         self->animCurFrame = 5;
         self->hitboxWidth = 6;
         self->hitboxHeight = 6;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         if (self->params != 0) {
             self->step = 4;
             self->zPriority += 2;
         } else {
             self->animCurFrame = 4;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->palette++;
             g_Tilemap.fg[0x251B] = 0x328;
             self->step = 3;
@@ -207,7 +207,7 @@ void EntityBreakableWall(Entity* self) {
         self->hitboxHeight = 0x18;
         self->hitboxOffX = 8;
         self->hitboxOffY = 0;
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
         if (!self->params) {
             if (g_CastleFlags[RTOP_SECRET_WALL_1_BROKEN]) {
                 wallStatus = 3;
@@ -316,7 +316,7 @@ void EntityTriangleElevator(Entity* self) {
     case 0:
         InitializeEntity(g_EInitRTOPCommon);
         self->animCurFrame = 0xD;
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
         self->ext.topElevator.unk88 = 0;
         self->ext.topElevator.movingUp = self->params & 1;
         self->ext.topElevator.playerCollision = 0;
@@ -505,7 +505,7 @@ void func_us_801A1940(Entity* self) {
     case 0:
         InitializeEntity(g_EInitRTOPCommon);
         self->animCurFrame = 0xC;
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
         self->ext.topElevator.unk88 = 0;
         self->ext.topElevator.movingUp = self->params & 1;
         self->posY.i.hi = 0x1AF - g_Tilemap.scrollY.i.hi;

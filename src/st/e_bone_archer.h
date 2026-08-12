@@ -64,14 +64,14 @@ void EntityBoneArcher(Entity* self) {
     u8 unused;
 
     if (self->flags & FLAG_DEAD) {
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         SetStep(11);
     }
     switch (self->step) {
     case 0:
         InitializeEntity(g_EInitBoneArcher);
         if (self->params) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->animCurFrame = self->params + 24;
             self->flags |= FLAG_DESTROY_IF_OUT_OF_CAMERA |
                            FLAG_DESTROY_IF_BARELY_OUT_OF_CAMERA |
@@ -373,7 +373,7 @@ void EntityBoneArcherArrow(Entity* self) {
             self->velocityX = FIX(-4.0);
         }
         if (self->params) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->drawFlags |= ENTITY_ROTATE;
             self->animCurFrame += self->params;
             if (self->params == 1) {
@@ -412,7 +412,7 @@ void EntityBoneArcherArrow(Entity* self) {
             self->ext.boneArcher.unk96 =
                 tempEntity->posY.i.hi - self->posY.i.hi;
             self->ext.boneArcher.unk88 = 0x20;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step++;
         }
         break;

@@ -269,7 +269,7 @@ void EntityWeaponAttack(Entity* self) {
 
     case 1:
         if (--self->ext.weapon.lifetime == 0) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
 
             vectors = &D_7B000_8017B0F4[0][3];
             dest = D_7B000_8017B3F4;

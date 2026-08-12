@@ -157,7 +157,7 @@ void EntityBreakableWall(Entity* self) {
         self->hitPoints = 0x20;
         self->hitboxWidth = 24;
         self->hitboxHeight = 32;
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
 
         self->flags |= FLAG_SUPPRESS_STUN;
 
@@ -318,7 +318,7 @@ void EntityBreakableWall(Entity* self) {
     case BREAK_3: // Dynamically calculated, never set directly
         prim = self->ext.breakableDebris.prim;
         prim->drawMode = DRAW_HIDE;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         g_CastleFlags[CHI_SECRET_WALL_OPEN] = 1;
         // Update the map "explored" state
         // This is read from an array of data in DRA, and in

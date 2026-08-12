@@ -26,7 +26,7 @@ void EntitySpikeRoomLightSwitch(Entity* self) {
     switch (self->step) {
     case INIT:
         InitializeEntity(g_EInitSpikeRoomLightSwitch);
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
         self->hitboxWidth = 0x28;
         self->hitboxHeight = 8;
         self->hitboxOffX = 0x28;

@@ -18,7 +18,7 @@ void EntityBloodSkeleElevButton(Entity* self) {
         self->hitboxWidth = 6;
         self->hitboxHeight = 8;
         self->hitboxOffY = -22;
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
         newEntity = &self[-1];
         CreateEntityFromEntity(E_ID(BLOOD_SKELETON), self, newEntity);
         newEntity->posY.i.hi = 344 - g_Tilemap.scrollY.i.hi;

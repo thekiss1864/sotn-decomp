@@ -83,7 +83,7 @@ void EntityBatEcho(Entity* self) {
         self->ext.batEcho.unk7E += 0xA;
         if (self->ext.batEcho.unk7E > self->ext.batEcho.unk80) {
             self->ext.batEcho.unk7E = self->ext.batEcho.unk80;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step++;
         }
         break;

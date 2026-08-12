@@ -42,7 +42,7 @@ void func_psp_0923AD68(Entity* self) {
             self->ext.soulStealOrb.angle = angle;
             self->ext.soulStealOrb.unk80 = 0x200;
             self->ext.soulStealOrb.unk7E = 0;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
         } else {
             DestroyEntity(self);
         }
@@ -51,7 +51,7 @@ void func_psp_0923AD68(Entity* self) {
     case 1:
         self->ext.soulStealOrb.unk82++;
         if (self->ext.soulStealOrb.unk82 == 16) {
-            self->hitboxState = 1;
+            self->hitboxState = HITBOX_ACTIVE;
         }
         if (abs(pl->posX.i.hi - self->posX.i.hi) < 8 &&
             abs(pl->posY.i.hi - self->posY.i.hi) < 8) {
@@ -119,7 +119,7 @@ void func_psp_0923B2F0(Entity* self) {
             self->ext.soulStealOrb.angle = rand() % ROT(360);
             self->ext.soulStealOrb.unk80 = 0x200;
             self->ext.soulStealOrb.unk7E = 0;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             return;
         }
         break;
@@ -127,7 +127,7 @@ void func_psp_0923B2F0(Entity* self) {
     case 1:
         self->ext.soulStealOrb.unk82++;
         if (self->ext.soulStealOrb.unk82 == 16) {
-            self->hitboxState = 1;
+            self->hitboxState = HITBOX_ACTIVE;
         }
         if (abs(pl->posX.i.hi - self->posX.i.hi) < 8 &&
             abs(pl->posY.i.hi - self->posY.i.hi) < 8) {

@@ -173,7 +173,7 @@ void EntityDragonSegment(Entity* self) {
     s32 yVar;
 
     if ((self->flags & FLAG_DEAD) && (self->step < 8)) {
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->flags |= FLAG_DESTROY_IF_OUT_OF_CAMERA |
                        FLAG_DESTROY_IF_BARELY_OUT_OF_CAMERA;
         SetStep(DRAGSEG_DEAD);
@@ -229,10 +229,10 @@ void EntityDragonSegment(Entity* self) {
     AnimateEntity(&anim_bone_twisting2, self);
     temp_s0 = self->params & 3;
     if ((g_Timer & 3) == temp_s0) {
-        self->hitboxState = 3;
+        self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
         return;
     }
-    self->hitboxState = 0;
+    self->hitboxState = HITBOX_INACTIVE;
 }
 
 // Unused!
@@ -241,7 +241,7 @@ void EntityDragonHeadParts(Entity* self) {
     if (!self->step) {
         InitializeEntity(g_EInitDragonRiderHead);
         self->drawFlags = ENTITY_ROTATE;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->animCurFrame = self->params + 8;
         self->zPriority += self->params;
         temp_s0 = &headPartsParams[self->params];

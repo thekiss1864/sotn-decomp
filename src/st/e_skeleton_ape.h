@@ -53,7 +53,7 @@ void EntitySkeletonApe(Entity* self) {
                 self->ext.skeletonApe.unkEntity = tempEntity;
                 if (self->params == 2) {
                     tempEntity->params = 1;
-                    self->hitboxState = 0;
+                    self->hitboxState = HITBOX_INACTIVE;
                 }
                 self->animCurFrame = 0xF;
             } else {
@@ -92,7 +92,7 @@ void EntitySkeletonApe(Entity* self) {
                 tempEntity->step++;
                 tempEntity->ext.skeletonApe.unk7C = 4;
                 if (self->params == 2) {
-                    self->hitboxState = 3;
+                    self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
                 }
                 return;
             }
@@ -199,7 +199,7 @@ void EntitySkeletonApePunch(Entity* self) {
     self->hitboxWidth = D_us_80183310[animCurFrame].x;
     self->hitboxHeight = D_us_80183310[animCurFrame].y;
     self->facingLeft = parent->facingLeft;
-    self->hitboxState = parent->hitboxState & 1;
+    self->hitboxState = parent->hitboxState & HITBOX_ACTIVE;
     self->posX.i.hi = parent->posX.i.hi;
     self->posY.i.hi = parent->posY.i.hi;
     if (parent->entityId != E_SKELETON_APE) {
@@ -372,7 +372,7 @@ void EntityThrownBarrel(Entity* self) {
     switch (self->step) {
     case 0:
         InitializeEntity(g_EInitSkeletonApeBarrel);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->flags =
             FLAG_DESTROY_IF_OUT_OF_CAMERA |
             FLAG_DESTROY_IF_BARELY_OUT_OF_CAMERA | FLAG_POS_CAMERA_LOCKED |

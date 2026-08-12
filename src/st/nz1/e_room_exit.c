@@ -13,7 +13,7 @@ void EntityRoomExit(Entity* self) {
         InitializeEntity(g_EInitInteractable);
         self->hitboxWidth = 16;
         self->hitboxHeight = 32;
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
         // fallthrough
 
     case 1:

@@ -157,11 +157,11 @@ void EntitySalome(Entity* self) {
         self->ext.salome.playerWithinProximity = false;
     }
 
-    self->hitboxState = 3;
+    self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
     entity = &PLAYER;
     if (((GetSideToPlayer() & 1) ^ 1) == self->facingLeft &&
         self->ext.salome.playerWithinProximity) {
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
     }
 
     if (self->hitFlags & 3) {
@@ -346,7 +346,7 @@ void EntitySalome(Entity* self) {
     case DEATH:
         switch (self->step_s) {
         case 0:
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
 
             entity = self + 1;
             DestroyEntity(entity);
@@ -403,7 +403,7 @@ void EntitySalomeEffects(Entity* self) {
     switch (self->step) {
     case INIT:
         InitializeEntity(g_EInitSalomeEffects);
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
         self->blendMode = BLEND_ADD | BLEND_TRANSP;
         if (!self->params) {
             // Magical shield
@@ -415,7 +415,7 @@ void EntitySalomeEffects(Entity* self) {
         } else {
             // Lantern light effect
             self->blendMode = BLEND_ADD | BLEND_TRANSP;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step = LANTERN_LIGHT;
             break;
         }
@@ -431,7 +431,7 @@ void EntitySalomeEffects(Entity* self) {
                 PlaySfxPositional(SFX_MAGIC_NOISE_SWEEP);
                 self->ext.salome.shieldActivated = true;
             }
-            self->hitboxState = 2;
+            self->hitboxState = HITBOX_SOLID;
             self->opacity += 16;
             if (self->opacity > 0x80) {
                 self->opacity = 0x80;
@@ -440,7 +440,7 @@ void EntitySalomeEffects(Entity* self) {
         }
 
         self->ext.salome.shieldActivated = false;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         if (self->opacity) {
             self->opacity -= 16;
             break;

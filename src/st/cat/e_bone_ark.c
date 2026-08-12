@@ -217,7 +217,7 @@ void EntityBoneArkProjectile(Entity* self) {
                 LOH(prim->next->r2) = 0x40;
                 LOH(prim->next->b2) = 0x40;
                 self->ext.boneArk.unk90++;
-                self->hitboxState = 0;
+                self->hitboxState = HITBOX_INACTIVE;
                 g_api.PlaySfx(SFX_FM_THUNDER_EXPLODE);
                 self->step++;
             }
@@ -239,7 +239,7 @@ void EntityBoneArkProjectile(Entity* self) {
                 LOH(prim->next->r2)++;
                 LOH(prim->next->b2)++;
                 if (LOH(prim->next->r2) > 0x40) {
-                    self->hitboxState = 1;
+                    self->hitboxState = HITBOX_ACTIVE;
                     self->ext.boneArk.unk90++;
                 }
                 break;
@@ -543,7 +543,7 @@ void EntityBoneArkAttackEffects(Entity* self) {
         self->blendMode = BLEND_TRANSP | BLEND_ADD;
         self->scaleX = 0x100;
         self->opacity = 0;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->zPriority = self->ext.boneArk.entity->zPriority + 1;
         primIndex = g_api.AllocPrimitives(PRIM_LINE_G2, 0x10);
         if (primIndex != -1) {
@@ -636,7 +636,7 @@ void EntityBoneArkSkull(Entity* self) {
     if (self->flags & FLAG_DEAD && self->step < 7) {
         PlaySfxPositional(SFX_QUICK_STUTTER_EXPLODE_B);
         self->animCurFrame = 0;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         SetStep(7);
         boneArkEntity->ext.boneArk.headDying |= 1;
         if (self->flags & FLAG_HAS_PRIMS) {
@@ -996,7 +996,7 @@ void EntityBoneArk(Entity* self) {
     case INIT:
         InitializeEntity(g_EInitBoneArk);
         self->drawFlags |= ENTITY_ROTATE;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->rotate = 0;
         self->animCurFrame = 0xD;
 
@@ -1298,7 +1298,7 @@ void EntityBoneArkSkeleton(Entity* self) {
 
     if (self->flags & FLAG_DEAD && self->step < DEATH) {
         PlaySfxPositional(SFX_RED_SKEL_COLLAPSE);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->ext.boneArk.unk8C.i.hi = 0;
         self->velocityX = 0;
         otherSkeletonEntity->velocityX = 0;

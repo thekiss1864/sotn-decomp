@@ -24,20 +24,20 @@ void EntityFlyingZombie2(Entity* self) {
 
     if (!self->ext.flyingZombie.unk81 && (self->hitFlags & 3) &&
         self->step != 3) {
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->hitPoints = g_api.enemyDefs[15].hitPoints;
         SetStep(3);
         PlaySfxPositional(SFX_FLYING_ZOMBIE_PAIN);
     }
     if (self->flags & FLAG_DEAD) {
         if (!self->ext.flyingZombie.unk81) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->flags &= ~FLAG_DEAD;
             self->hitPoints = g_api.enemyDefs[15].hitPoints;
             SetStep(3);
             PlaySfxPositional(SFX_FLYING_ZOMBIE_PAIN);
         } else if (self->step != 7) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             SetStep(7);
         }
     }
@@ -112,7 +112,7 @@ void EntityFlyingZombie2(Entity* self) {
             }
             tempEntity = self + 1;
             tempEntity->step = 2;
-            tempEntity->hitboxState = 0;
+            tempEntity->hitboxState = HITBOX_INACTIVE;
             self->step_s++;
         }
         if (!AnimateEntity(D_us_80182874, self)) {
@@ -126,7 +126,7 @@ void EntityFlyingZombie2(Entity* self) {
             tempEntity->flags &= ~FLAG_DEAD;
             self->hitPoints = g_api.enemyDefs[14].hitPoints;
             self->animCurFrame = 0x12;
-            self->hitboxState = 3;
+            self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
             SetStep(5);
         }
         break;
@@ -257,7 +257,7 @@ void EntityFlyingZombie1(Entity* self) {
     if ((self->flags & FLAG_DEAD) && self->step > 5) {
         self->step = 5;
         self->step_s = 0;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->ext.flyingZombie.unk7E = 0;
         self->ext.flyingZombie.unk80 = 0;
         PlaySfxPositional(SFX_FLYING_ZOMBIE_DEATH);
@@ -274,7 +274,7 @@ void EntityFlyingZombie1(Entity* self) {
     case 1:
         self->facingLeft = (self - 1)->facingLeft;
         if ((self->hitFlags & 3) || (self->flags & FLAG_DEAD)) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->flags &= ~FLAG_DEAD;
             self->hitPoints = g_api.enemyDefs[14].hitPoints;
             (self - 1)->step = 4;
@@ -286,7 +286,7 @@ void EntityFlyingZombie1(Entity* self) {
         break;
 
     case 3:
-        self->hitboxState = 3;
+        self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
         if (!self->step_s) {
             self->velocityY = FIX(-13.0 / 16);
             self->step_s++;

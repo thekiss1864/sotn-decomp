@@ -252,7 +252,7 @@ static void EntityWeaponAttack(Entity* self) {
                 self->ext.karmacoin.unk7E = 0x20;
                 self->attack = 4;
                 self->attackElement = ELEMENT_HIT;
-                self->hitboxState = 0x82;
+                self->hitboxState = HITBOX_INVULNERABLE | HITBOX_SOLID;
                 self->nFramesInvincibility = 0x50;
                 self->stunFrames = 4;
                 self->hitEffect = 2;

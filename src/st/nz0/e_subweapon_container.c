@@ -47,7 +47,7 @@ void EntitySubWeaponContainer(Entity* self) {
         self->hitboxHeight = 32;
         self->hitboxOffY = -0x38;
         self->hitboxOffX = 0;
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
         self->palette += self->params;
         newEntity = self + 1;
         CreateEntityFromEntity(
@@ -127,7 +127,7 @@ void EntitySubWeaponContainer(Entity* self) {
             }
         }
         PlaySfxPositional(SFX_GLASS_BREAK_E);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->animCurFrame = 2;
         self->step++;
         break;
@@ -269,7 +269,7 @@ void func_801C7884(Entity* self) {
     switch (self->step) {
     case 0:
         InitializeEntity(g_EInitObtainable);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         // fallthrough
     case 1:
 #ifdef VERSION_PSP
@@ -317,7 +317,7 @@ void func_801C7884(Entity* self) {
             self->poseTimer = 0;
             self->pose = 0;
             self->step = 0;
-            self->hitboxState = 1;
+            self->hitboxState = HITBOX_ACTIVE;
         }
     }
 }

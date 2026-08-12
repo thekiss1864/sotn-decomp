@@ -66,7 +66,7 @@ void EntityFleaMan(Entity* self) {
 
     if (self->ext.fleaMan.unk7C) {
         self->ext.fleaMan.unk7C--;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
     } else {
         self->hitboxState = 19;
     }

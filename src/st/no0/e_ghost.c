@@ -27,7 +27,7 @@ void EntityGhostEnemy(Entity* self) {
         InitializeEntity(g_EInitGhostEnemy);
         self->hitboxOffX = 1;
         self->hitboxOffY = -1;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         /* fallthrough */
     case 1:
         self->facingLeft = (GetSideToPlayer() & 1) ^ 1;
@@ -36,7 +36,7 @@ void EntityGhostEnemy(Entity* self) {
 
     case 2:
         if (!AnimateEntity(anim_phase_in, self)) {
-            self->hitboxState = 7;
+            self->hitboxState = HITBOX_WEAPON_HIT | HITBOX_SOLID | HITBOX_ACTIVE;
             SetStep(3);
         }
         break;

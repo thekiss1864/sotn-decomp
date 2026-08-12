@@ -62,7 +62,7 @@ void EntityWeaponAttack(Entity* self) {
     }
 
     if (self->ext.weapon.anim < 2 && PLAYER.pose == 6) {
-        self->hitboxState = 4;
+        self->hitboxState = HITBOX_WEAPON_HIT;
     }
 
     self->drawFlags = PLAYER.drawFlags;

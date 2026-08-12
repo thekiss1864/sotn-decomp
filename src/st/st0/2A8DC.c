@@ -28,7 +28,7 @@ void EntitySecretButton(Entity* self) {
         self->animCurFrame = 5;
         self->hitboxWidth = 6;
         self->hitboxHeight = 6;
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
 
         if (self->params) {
             self->step = 4;
@@ -39,7 +39,7 @@ void EntitySecretButton(Entity* self) {
         if (g_isSecretStairsButtonPressed) {
             self->animCurFrame = 4;
             self->palette += 1;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             g_Tilemap.fg[0x1C4] = 0;
             self->step = 3;
             break;
@@ -64,7 +64,7 @@ void EntitySecretButton(Entity* self) {
     case 2:
         if (self->hitFlags) {
             g_api.PlaySfx(SFX_ANIME_SWORD_B);
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->palette += 1;
             g_isSecretStairsButtonPressed = true;
             self->step++;

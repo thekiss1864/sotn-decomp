@@ -284,7 +284,7 @@ static void func_ptr_80170004(Entity* self) {
             self->hitboxWidth = self->hitboxHeight = 9;
             self->attack = 1;
             self->attackElement = ELEMENT_NONE;
-            self->hitboxState = 4;
+            self->hitboxState = HITBOX_WEAPON_HIT;
             self->nFramesInvincibility = 4;
             self->stunFrames = 4;
             self->hitEffect = 1;

@@ -113,7 +113,7 @@ void RicEntitySubwpnThrownAxe(Entity* self) {
             return;
         }
         if (self->hitFlags == 2) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->velocityX = -(self->velocityX / 2);
             self->velocityY = FIX(-3);
             self->step = AXE_BOUNCE;
@@ -511,7 +511,7 @@ void RicEntitySubwpnKnife(Entity* self) {
         if (self->hitFlags == 1) {
             self->ext.subweapon.timer = 4;
             self->step = 3;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             return;
         }
         for (i = 0; i < 8; i++) {
@@ -528,7 +528,7 @@ void RicEntitySubwpnKnife(Entity* self) {
                 self->ext.subweapon.timer = 64;
                 self->velocityX = -(self->velocityX >> 3);
                 self->velocityY = FIX(-2.5);
-                self->hitboxState = 0;
+                self->hitboxState = HITBOX_INACTIVE;
                 self->posX.i.hi += xCol;
                 RicCreateEntFactoryFromEntity(self, FACTORY(BP_42, 2), 0);
                 self->posX.i.hi -= xCol;

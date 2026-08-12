@@ -529,7 +529,7 @@ void RicUpdatePlayerEntities(void) {
         FntPrint("dead player\n");
         entity = &g_Entities[4];
         for (i = 4; i < 64; i++, entity++) {
-            entity->hitboxState = 0;
+            entity->hitboxState = HITBOX_INACTIVE;
         }
     }
 }
@@ -736,7 +736,7 @@ void RicEntitySlideKick(Entity* entity) {
         }
         entity->hitboxState = entity->ext.subweapon.timer;
         if (PLAYER.pose < 2) {
-            entity->hitboxState = 0;
+            entity->hitboxState = HITBOX_INACTIVE;
         }
         if (PLAYER.pose > 7) {
             DestroyEntity(entity);

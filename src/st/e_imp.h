@@ -289,7 +289,7 @@ void EntityImp(Entity* self) {
             if (g_Player.status & immuneStates) {
                 SetStep(IMP_3);
             }
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->ext.imp.playerJamTimer = 0x20;
             self->step_s += 1;
             /* fallthrough */
@@ -347,7 +347,7 @@ void EntityImp(Entity* self) {
             /* fallthrough */
         case 1:
             if (self->ext.imp.timer < 0x28) {
-                self->hitboxState = 3;
+                self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
             }
             AnimateEntity(anim_imp, self);
             MoveEntity();
@@ -377,7 +377,7 @@ void EntityImp(Entity* self) {
     case IMP_DEAD:
         switch (self->step_s) {
         case 0:
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->drawFlags = ENTITY_ROTATE;
             self->velocityX = 0;
             self->velocityY = 0;

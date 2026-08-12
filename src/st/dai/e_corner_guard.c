@@ -357,7 +357,7 @@ void EntityCornerGuard(Entity* self) {
             }
             entity = self + 1;
             DestroyEntity(entity);
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->flags |= FLAG_DESTROY_IF_OUT_OF_CAMERA | FLAG_UNK_00200000;
             entity = AllocEntity(&g_Entities[224], &g_Entities[256]);
             if (entity != NULL) {

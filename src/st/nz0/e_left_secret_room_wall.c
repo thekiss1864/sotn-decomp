@@ -36,7 +36,7 @@ void EntityLeftSecretRoomWall(Entity* self) {
         InitializeEntity(g_EInitInteractable);
         self->hitboxWidth = 16;
         self->hitboxHeight = 32;
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
 
         if (g_CastleFlags[NZ0_SECRET_WALL_OPEN]) {
             i = 8 * 3;
@@ -117,7 +117,7 @@ void EntityBottomSecretRoomFloor(Entity* self) {
         InitializeEntity(g_EInitInteractable);
         self->hitboxWidth = 16;
         self->hitboxHeight = 16;
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
         if (g_CastleFlags[NZ0_SECRET_FLOOR_OPEN]) {
             i = 12;
         } else {

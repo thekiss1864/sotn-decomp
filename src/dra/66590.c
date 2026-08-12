@@ -40,7 +40,7 @@ void DrawEntitiesHitbox(s32 drawMode) {
     otIdx = 0x1F0;
     for (polyCount = 0, entity = g_Entities; polyCount < 0x40; polyCount++,
         entity++) {
-        if (entity->hitboxState == 0)
+        if (entity->hitboxState == HITBOX_INACTIVE)
             continue;
         if (g_GpuUsage.tile >= MAX_TILE_COUNT) {
             break;
@@ -58,7 +58,7 @@ void DrawEntitiesHitbox(s32 drawMode) {
         tile->r0 = 0xFF;
         tile->g0 = 0xFF;
         tile->b0 = 0xFF;
-        if (entity->hitboxState == 2) {
+        if (entity->hitboxState == HITBOX_SOLID) {
             tile->r0 = 0;
             tile->g0 = 0xFF;
             tile->b0 = 0;
@@ -74,7 +74,7 @@ void DrawEntitiesHitbox(s32 drawMode) {
     }
 
     for (; polyCount < MAX_TILE_COUNT; polyCount++, entity++) {
-        if (entity->hitboxState == 0)
+        if (entity->hitboxState == HITBOX_INACTIVE)
             continue;
         if (g_GpuUsage.tile >= MAX_TILE_COUNT) {
             break;
@@ -92,17 +92,17 @@ void DrawEntitiesHitbox(s32 drawMode) {
         tile->r0 = 0xFF;
         tile->g0 = 0xFF;
         tile->b0 = 0xFF;
-        if (entity->hitboxState == 1) {
+        if (entity->hitboxState == HITBOX_ACTIVE) {
             tile->r0 = 0xFF;
             tile->g0 = 0;
             tile->b0 = 0;
         }
-        if (entity->hitboxState == 2) {
+        if (entity->hitboxState == HITBOX_SOLID) {
             tile->r0 = 0;
             tile->g0 = 0;
             tile->b0 = 0xFF;
         }
-        if (entity->hitboxState == 3) {
+        if (entity->hitboxState == (HITBOX_SOLID | HITBOX_ACTIVE)) {
             tile->r0 = 0xFF;
             tile->g0 = 0;
             tile->b0 = 0xFF;

@@ -7,7 +7,7 @@ s32 CheckAllEntitiesValid(void) {
     for (i = 0; i < 0x80; i++, entity++) {
         if (!entity->entityId)
             continue;
-        if (entity->hitboxState == 0)
+        if (entity->hitboxState == HITBOX_INACTIVE)
             continue;
         if (entity->flags & FLAG_UNK_00200000)
             continue;

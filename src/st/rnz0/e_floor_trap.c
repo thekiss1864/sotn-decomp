@@ -50,7 +50,7 @@ void EntityFloorTrap(Entity* self) {
             self->hitboxHeight = 5;
             self->attackElement = ELEMENT_CUT | ELEMENT_UNK_10;
             self->attack = 15;
-            self->hitboxState = 1;
+            self->hitboxState = HITBOX_ACTIVE;
 
             // Create the wheel
             other = AllocEntity(&g_Entities[224], &g_Entities[256]);

@@ -14,7 +14,7 @@ void EntityCannonLever(Entity* self) {
         InitializeEntity(g_EInitInteractable);
         self->hitboxWidth = 4;
         self->hitboxHeight = 20;
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
 
         primIndex = g_api.AllocPrimitives(PRIM_GT4, 1);
         if (primIndex == -1) {
@@ -38,7 +38,7 @@ void EntityCannonLever(Entity* self) {
 
         player = &PLAYER;
         if (player->posX.i.hi < 128) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
         }
         break;
 
@@ -63,7 +63,7 @@ void EntityCannonLever(Entity* self) {
     }
 
     if (g_CastleFlags[NZ0_CANNON_WALL_SHORTCUT]) {
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
     }
     prim = self->ext.prim;
     prim->x0 = self->posX.i.hi - 4;

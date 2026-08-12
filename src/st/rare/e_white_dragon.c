@@ -58,7 +58,7 @@ static void func_us_801B4F00(void) {
                 currentEntity->hitboxState =
                     g_api.enemyDefs[WHITE_DRAGON_ID].hitboxState;
             } else {
-                currentEntity->hitboxState = 0;
+                currentEntity->hitboxState = HITBOX_INACTIVE;
             }
 
             dx = (currentEntity->ext.whiteDragon.posX.i.hi -
@@ -848,7 +848,7 @@ void EntityWhiteDragonFlameBreath(Entity* self) {
     case 0:
         InitializeEntity(g_EInitWhiteDragonFlameBreath);
         self->zPriority += 1;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->blendMode = BLEND_TRANSP | BLEND_ADD;
         entity = self->ext.whiteDragon.entity;
         SetEntityVelocityFromAngle(entity->ext.whiteDragon.angle, 0x60);
@@ -862,7 +862,7 @@ void EntityWhiteDragonFlameBreath(Entity* self) {
         if (!--LOWU(self->ext.whiteDragon.unk80)) {
             SetStep(2);
             self->zPriority = g_unkGraphicsStruct.g_zEntityCenter - 0xC;
-            self->hitboxState = 1;
+            self->hitboxState = HITBOX_ACTIVE;
             self->ext.whiteDragon.unk84 = 0;
             self->drawFlags = ENTITY_SCALEY | ENTITY_SCALEX;
         }
@@ -896,7 +896,7 @@ void EntityWhiteDragonFlameBreath(Entity* self) {
 
         MoveEntity();
         if (self->animCurFrame > 6) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
         }
 
         size = self->ext.whiteDragon.unk84 * 32;

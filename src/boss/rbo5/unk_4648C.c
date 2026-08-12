@@ -1585,7 +1585,7 @@ void func_us_801C9624(void) {
         FntPrint("dead boss\n");
         entity = &g_Entities[E_ID_44];
         for (i = E_ID_44; i < E_ID_90; i++, entity++) {
-            entity->hitboxState = 0;
+            entity->hitboxState = HITBOX_INACTIVE;
         }
     }
 }
@@ -4486,7 +4486,7 @@ void EntitySubwpnReboundStone(Entity* self) {
             return;
         }
         if (self->ext.reboundStone.lifeTimer == 0x20) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
         }
         prim = (PrimLineG2*)&g_PrimBuf[self->primIndex];
         while (prim != NULL) {
@@ -4663,7 +4663,7 @@ void EntitySubwpnKnife(Entity* self) {
                 self->ext.timer.t = 64;
                 self->velocityX = -(self->velocityX >> 3);
                 self->velocityY = FIX(-2.5);
-                self->hitboxState = 0;
+                self->hitboxState = HITBOX_INACTIVE;
                 self->posX.i.hi += xCol;
                 CreateEntFactoryFromEntity(
                     self, FACTORY(BP_REBOUND_STONE_HIT, 0), 0);
@@ -4680,7 +4680,7 @@ void EntitySubwpnKnife(Entity* self) {
         if (self->hitFlags & 0x80) {
             self->ext.timer.t = 4;
             self->step = DAGGER_HIT_ENEMY;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             return;
         }
         x = self->posX.i.hi;

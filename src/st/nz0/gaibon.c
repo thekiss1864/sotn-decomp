@@ -131,7 +131,7 @@ void EntityGaibon(Entity* self) {
     }
     if ((self->flags & FLAG_DEAD) && (self->step < GAIBON_NEAR_DEATH)) {
         self->ext.GS_Props.grabedAscending = 0;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         SetStep(GAIBON_NEAR_DEATH);
     } else {
         other = &SLOGRA;
@@ -624,7 +624,7 @@ void EntityGaibonLeg(Entity* self) {
 
     if (!self->step) {
         InitializeEntity(g_EInitGaibon);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
     }
 
     gaibon = self - 1;
@@ -716,7 +716,7 @@ void EntityLargeGaibonProjectile(Entity* self) {
             self->palette = PAL_FLAG(PAL_UNK_1F3);
             self->blendMode = BLEND_TRANSP | BLEND_ADD;
             self->step = 2;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->flags |= FLAG_UNK_2000;
         }
         break;

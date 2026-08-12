@@ -217,7 +217,7 @@ void EntitySuccubus(Entity* self) {
 
     if (self->flags & FLAG_DEAD) {
         if (self->step != SUCCUBUS_DYING) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             SetStep(SUCCUBUS_DYING);
         }
     }
@@ -703,7 +703,7 @@ void EntitySuccubus(Entity* self) {
                     g_Player.unk60 = 1;
                     g_Player.unk64 = 0;
                     g_Player.unk62 = 0;
-                    self->hitboxState = 0;
+                    self->hitboxState = HITBOX_INACTIVE;
                     self->step_s++;
                 }
             } else {
@@ -749,7 +749,7 @@ void EntitySuccubus(Entity* self) {
         case SUCCUBUS_CHARGE_FLY_AWAY:
             if (!--self->ext.succubus.timer) {
                 g_Player.unk60 = 0;
-                self->hitboxState = 3;
+                self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
                 if (self->facingLeft) {
                     self->velocityX = FIX(-4);
                 } else {
@@ -827,7 +827,7 @@ void EntitySuccubus(Entity* self) {
                 entity->params = *clonesShootOrder;
             }
             self->params = *clonesShootOrder;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->ext.succubus.timer = 64;
             multiple_count = 6;
             PlaySfxPositional(SFX_SUCCUBUS_DUPLICATES);
@@ -858,7 +858,7 @@ void EntitySuccubus(Entity* self) {
             entity->posY.i.hi = self->posY.i.hi;
             self->posX.i.hi = posX;
             self->posY.i.hi = posY;
-            self->hitboxState = 3;
+            self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
             self->step_s++;
 
         case SUCCUBUS_CLONE_ATTACK_ANIM_2:
@@ -1162,7 +1162,7 @@ void EntitySuccubusClone(Entity* self) {
             if (multiple_count != 0) {
                 multiple_count--;
             }
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->flags |= FLAG_DEAD;
             g_api.PlaySfxVolPan(SFX_BOSS_CLONE_DISAPPEAR, 0x54, 0);
             SetStep(5);
@@ -1172,7 +1172,7 @@ void EntitySuccubusClone(Entity* self) {
     switch (self->step) {
     case 0:
         InitializeEntity(D_801804F4);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         velX = self->posX.i.hi + g_Tilemap.scrollX.i.hi;
         velX = (self->ext.succubus.clonePosX - velX) << 0x10;
         self->velocityX = velX / 0x40;
@@ -1184,7 +1184,7 @@ void EntitySuccubusClone(Entity* self) {
         self->animCurFrame = newEntity->animCurFrame;
         self->facingLeft = newEntity->facingLeft;
         if (!--self->ext.succubus.timer) {
-            self->hitboxState = 3;
+            self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
             SetStep(2);
         }
         break;
@@ -1416,12 +1416,12 @@ void EntitySuccubusWingSpikeTip(Entity* self) {
         InitializeEntity(D_8018050C);
         self->animCurFrame = 0;
         self->drawFlags = ENTITY_ROTATE;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
 
     case 1:
         entity = self - 1;
         if (entity->animCurFrame) {
-            self->hitboxState = 1;
+            self->hitboxState = HITBOX_ACTIVE;
             self->animCurFrame = 86;
         }
         if (self->hitFlags) {

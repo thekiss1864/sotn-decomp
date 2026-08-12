@@ -435,7 +435,7 @@ void EntityDoppleganger10(void) {
         if (DOPPLEGANGER.poseTimer < 0) {
             DOPPLEGANGER.animCurFrame |= 0x8000;
         }
-        DOPPLEGANGER.hitboxState = 0;
+        DOPPLEGANGER.hitboxState = HITBOX_INACTIVE;
     } else {
         DOPPLEGANGER.hitboxState = g_Dop.unk70;
         if (g_Dop.status & PLAYER_STATUS_STONE) {
@@ -443,7 +443,7 @@ void EntityDoppleganger10(void) {
         }
         if ((g_Dop.timers[ALU_T_INVINCIBLE] |
              g_Dop.timers[ALU_T_INVINCIBLE_CONSUMABLES]) != 0) {
-            DOPPLEGANGER.hitboxState = 0;
+            DOPPLEGANGER.hitboxState = HITBOX_INACTIVE;
         }
     }
     InitPlayerAfterImage();

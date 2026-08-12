@@ -293,7 +293,7 @@ void EntityBoneHalberdParts(Entity* self) {
         return;
     }
     InitializeEntity(g_EInitBoneHalberd);
-    self->hitboxState = 0;
+    self->hitboxState = HITBOX_INACTIVE;
     self->flags |=
         FLAG_DESTROY_IF_OUT_OF_CAMERA | FLAG_DESTROY_IF_BARELY_OUT_OF_CAMERA |
         FLAG_UNK_00200000 | FLAG_UNK_2000;
@@ -312,7 +312,7 @@ void EntityBoneHalberdAttack(Entity* self) {
 
     if (!self->step) {
         InitializeEntity(g_EInitBoneHalberdAttack);
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
     }
     boneHalberd = self - 1;
     POS(self->posX) = POS(boneHalberd->posX);

@@ -227,7 +227,7 @@ void EntityBladeMaster(Entity* self) {
     FntPrint("check %x\n", self->ext.bladeMaster.playerStepTowards);
 
     if (self->flags & FLAG_DEAD) {
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         entity = self + 1;
         DestroyEntity(entity);
         SetStep(DEATH);
@@ -565,7 +565,7 @@ void EntityBladeMasterDeathParts(Entity* self) {
     switch (self->step) {
     case 0:
         InitializeEntity(g_EInitBladeMaster);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->flags |=
             FLAG_DESTROY_IF_OUT_OF_CAMERA | FLAG_UNK_00200000 | FLAG_UNK_2000;
         if (self->params) {

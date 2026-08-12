@@ -158,7 +158,7 @@ void EntityVandalSword(Entity* self) {
         self->ext.vandalSword.flag = true;
         entity = self + 1;
         DestroyEntity(entity);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->flags |= FLAG_DESTROY_IF_OUT_OF_CAMERA;
         SetStep(8);
     } else if (self->hitFlags & 3 && self->step != 8) {
@@ -170,7 +170,7 @@ void EntityVandalSword(Entity* self) {
         InitializeEntity(g_EInitVandalSword);
         self->drawFlags = ENTITY_ROTATE;
         self->rotate = 0;
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
         self->hitboxWidth = self->hitboxHeight = 0xE;
         self->hitPoints = 0x20;
 
@@ -387,7 +387,7 @@ void EntityVandalSwordHitbox(Entity* self) {
     if (!self->step) {
         InitializeEntity(g_EInitVandalSword);
         self->animCurFrame = 0;
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
         self->hitboxWidth = self->hitboxHeight = 6;
         self->flags |= FLAG_NOT_AN_ENEMY;
     }
@@ -410,7 +410,7 @@ extern EInit g_EInitVandSwordDeath;
 void EntityVandalSwordDeath(Entity* self) {
     if (!self->step) {
         InitializeEntity(g_EInitVandSwordDeath);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->drawFlags = ENTITY_OPACITY | ENTITY_ROTATE;
         self->opacity = 0x80;
         self->blendMode = BLEND_TRANSP | BLEND_ADD;

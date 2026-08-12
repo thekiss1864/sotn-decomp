@@ -188,7 +188,7 @@ static Entity* FindTarget2(Entity* self) {
         if (!e->entityId) {
             continue;
         }
-        if (e->hitboxState == 0) {
+        if (e->hitboxState == HITBOX_INACTIVE) {
             continue;
         }
         if (e->flags & FLAG_UNK_00200000) {
@@ -238,7 +238,7 @@ static int IsTargetValid2(Entity* entity) {
     if (entity == NULL) {
         return 0;
     }
-    if (entity->hitboxState == 0) {
+    if (entity->hitboxState == HITBOX_INACTIVE) {
         return 0;
     }
     if (entity->posX.i.hi < -0x10) {

@@ -203,7 +203,7 @@ void EntityFakeRalph(Entity* self) {
     switch (self->step) {
     case 0:
         InitializeEntity(D_us_801804AC);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         entity = self - 1;
         CreateEntityFromCurrentEntity(E_COFFIN, entity);
         entity->posY.i.hi = 0xBA - g_Tilemap.scrollY.i.hi;
@@ -235,7 +235,7 @@ void EntityFakeRalph(Entity* self) {
             break;
         case 2:
             if (D_us_801806B0 & 2) {
-                self->hitboxState = 3;
+                self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
                 SetStep(3);
             }
             break;
@@ -704,7 +704,7 @@ void EntityFakeRalph(Entity* self) {
         switch (self->step_s) {
         case 0:
             D_us_801806B4++;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             if (GetSideToPlayer() & 1) {
                 self->velocityX = FIX(2);
             } else {
@@ -1009,7 +1009,7 @@ void EntityDagger(Entity* self) {
     case 1:
         MoveEntity();
         if (self->flags & FLAG_DEAD) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->velocityX = -self->velocityX / 4;
             self->velocityY = FIX(-4.0);
             self->flags |= FLAG_DESTROY_IF_OUT_OF_CAMERA;
@@ -1079,7 +1079,7 @@ void EntityHolyWaterFlask(Entity* self) {
             self->ext.ralph.timer = 0x80;
             self->hitboxWidth = 4;
             self->hitboxHeight = 8;
-            self->hitboxState = 4;
+            self->hitboxState = HITBOX_WEAPON_HIT;
             if (self->facingLeft) {
                 self->velocityX = FIX(-0.5);
             } else {
@@ -1147,9 +1147,9 @@ void EntityHolyWaterFlame(Entity* self) {
         if (self->pose > 3 && self->pose < 10) {
             self->hitboxHeight = 8;
             self->hitboxOffY = -8;
-            self->hitboxState = 1;
+            self->hitboxState = HITBOX_ACTIVE;
         } else {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
         }
         break;
     }

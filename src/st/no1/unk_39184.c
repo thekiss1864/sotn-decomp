@@ -344,7 +344,7 @@ void func_us_801B9BE4(Entity* self) {
             self->step = 3;
         } else {
             self->palette = PAL_FLAG(0x41);
-            self->hitboxState = 3;
+            self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
             self->hitboxWidth = 6;
             self->hitboxHeight = 18;
             self->hitboxOffY = -4;
@@ -355,7 +355,7 @@ void func_us_801B9BE4(Entity* self) {
             if (g_CastleFlags[NO1_ELEVATOR_ACTIVATED]) {
                 g_api.func_800EA5E4(ANIMSET_OVL(3));
                 g_api.PlaySfxVolPan(SFX_ELEVATOR_GEARS_LOOP, 0, 0);
-                self->hitboxState = 0;
+                self->hitboxState = HITBOX_INACTIVE;
                 self->step = 2;
             }
         }
@@ -384,7 +384,7 @@ void func_us_801B9BE4(Entity* self) {
                 self->step_s--;
             }
             if (self->rotate >= 0x20) {
-                self->hitboxState = 0;
+                self->hitboxState = HITBOX_INACTIVE;
                 tempEntity = AllocEntity(&g_Entities[224], &g_Entities[256]);
                 if (tempEntity != NULL) {
                     CreateEntityFromEntity(E_ID(ID_5E), self, tempEntity);

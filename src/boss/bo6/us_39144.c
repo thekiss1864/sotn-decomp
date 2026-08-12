@@ -511,7 +511,7 @@ void func_us_801BBBD0(void) {
         FntPrint("dead boss\n");
         entity = &g_Entities[E_ID_44];
         for (i = E_ID_44; i < E_ID_90; i++, entity++) {
-            entity->hitboxState = 0;
+            entity->hitboxState = HITBOX_INACTIVE;
         };
     }
 }

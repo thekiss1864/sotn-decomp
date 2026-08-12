@@ -233,7 +233,7 @@ void EntityBoneMusket(Entity* self) {
             tempEntity->params = 2;
         }
         self->animCurFrame = 0;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         SetStep(9);
         break;
 
@@ -321,7 +321,7 @@ void func_us_801CF298(Entity* self) {
         tempVar = abs(prim->x1 - prim->x0);
         self->hitboxWidth = tempVar / 2;
         self->hitboxOffX = -self->hitboxWidth - 0x20;
-        self->hitboxState = 4;
+        self->hitboxState = HITBOX_WEAPON_HIT;
         self->step++;
         break;
 
@@ -330,7 +330,7 @@ void func_us_801CF298(Entity* self) {
         prim = self->ext.et_801CEB28.unk7C;
         prim->drawMode = DRAW_UNK02;
         if (self->hitParams) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
         } else {
             self->hitboxState = 9;
             if (self->facingLeft) {
@@ -347,7 +347,7 @@ void func_us_801CF298(Entity* self) {
     case 3:
         prim = self->ext.et_801CEB28.unk7C;
         prim->drawMode = DRAW_HIDE;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         break;
     }
     if (AnimateEntity(D_us_80182A40, self) == 0) {

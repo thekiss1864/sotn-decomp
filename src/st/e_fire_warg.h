@@ -722,7 +722,7 @@ void EntityFireWarg(Entity* self) {
                         self, 1, 1, 0, 38, ((Random() & 3) + 1), 4);
                 }
             } else {
-                ent_s4->hitboxState = 0;
+                ent_s4->hitboxState = HITBOX_INACTIVE;
                 ent_s4->attackElement = self->attackElement;
                 ent_s4->attack = self->attack;
             }
@@ -765,7 +765,7 @@ void EntityFireWarg(Entity* self) {
                         self, 1, 1, 0, 38, ((Random() & 3) + 1), 4);
                 }
             } else {
-                ent_s4->hitboxState = 0;
+                ent_s4->hitboxState = HITBOX_INACTIVE;
                 ent_s4->attackElement = self->attackElement;
                 ent_s4->attack = self->attack;
             }
@@ -842,7 +842,7 @@ void EntityUnkId30(Entity* self) {
     if (!self->step) {
         if (self->params) {
             InitializeEntity(g_EInitFireWarg2);
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
         } else {
             if (entity->params) {
                 InitializeEntity(g_EInitFireWarg2);
@@ -1052,7 +1052,7 @@ void EntityExplosion3(Entity* entity) {
         if (primIndex != -1) {
             InitializeEntity(g_EInitFireWarg3);
             entity->flags |= FLAG_UNK_2000;
-            entity->hitboxState = 0;
+            entity->hitboxState = HITBOX_INACTIVE;
             prim = &g_PrimBuf[primIndex];
             entity->flags |= FLAG_HAS_PRIMS;
             entity->primIndex = primIndex;
@@ -1329,7 +1329,7 @@ void EntityFireWargWaveAttack(Entity* self) {
 
         if (!--self->ext.timer.t) {
             self->ext.timer.t = 0x20;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step += 1;
         }
         break;
@@ -1395,7 +1395,7 @@ void EntityUnkId2F(Entity* self) {
         self->hitboxWidth -= 1;
         if (!--self->ext.timer.t) {
             self->ext.timer.t = 32;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step++;
         }
         break;

@@ -2115,9 +2115,9 @@ void UnknownEntId48(Entity* self) {
         return;
     }
     if (!IsRelicActive(RELIC_GAS_CLOUD)) {
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
     } else {
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
     }
     if (!self->step) {
         func_8011A328(self, 0xC);

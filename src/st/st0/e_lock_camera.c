@@ -19,7 +19,7 @@ void EntityLockCamera(Entity* self) {
     params = self->params & 0xFF;
     if (!self->step) {
         InitializeEntity(g_EInitLockCamera);
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
 
         facingLeft = self->ext.lockCamera.unk7C = D_80180660[params];
         if (facingLeft) {

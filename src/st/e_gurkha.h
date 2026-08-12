@@ -570,10 +570,10 @@ void EntityGurkha(Entity* self) {
                 ent_s0 = self + *var_s1;
                 ent_s0->step = 0x18;
                 ent_s0->step_s = 0;
-                ent_s0->hitboxState = 0;
+                ent_s0->hitboxState = HITBOX_INACTIVE;
             }
             self->velocityY = FIX(-2);
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->flags |= FLAG_DESTROY_IF_OUT_OF_CAMERA;
             self->step_s++;
             /* fallthrough */
@@ -664,7 +664,7 @@ void EntityGurkhaWeapon(Entity* self) {
             self->velocityY = rnd * rsin(angle);
             self->ext.GH_Props.timer = (Random() & 0x1F) + 0x20;
             self->flags |= FLAG_DESTROY_IF_OUT_OF_CAMERA;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step_s++;
             break;
 

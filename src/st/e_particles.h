@@ -77,7 +77,7 @@ void EntitySoulStealOrb(Entity* self) {
             self->ext.soulStealOrb.angle = angle;
             self->ext.soulStealOrb.unk80 = 0x400;
             self->ext.soulStealOrb.unk7E = 0;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
         } else {
             DestroyEntity(self);
         }
@@ -86,7 +86,7 @@ void EntitySoulStealOrb(Entity* self) {
     case 1:
         self->ext.soulStealOrb.unk82++;
         if (self->ext.soulStealOrb.unk82 == 16) {
-            self->hitboxState = 1;
+            self->hitboxState = HITBOX_ACTIVE;
         }
         if (self->hitFlags) {
             if (!g_Player.unk56) {
@@ -150,7 +150,7 @@ void EntityEnemyBlood(Entity* self) {
             self->flags |= FLAG_HAS_PRIMS;
             self->primIndex = i;
             self->animSet = ANIMSET_DRA(0);
-            self->hitboxState = 1;
+            self->hitboxState = HITBOX_ACTIVE;
             self->ext.bloodDroplets.timer = 48;
             self->hitboxWidth = 0;
             self->hitboxHeight = 8;
@@ -212,7 +212,7 @@ void EntityEnemyBlood(Entity* self) {
 
         if (self->hitboxState) {
             if (!(g_Player.status & PLAYER_STATUS_ABSORB_BLOOD)) {
-                self->hitboxState = 0;
+                self->hitboxState = HITBOX_INACTIVE;
             } else {
                 self->velocityX += self->ext.bloodDroplets.speed;
 
@@ -228,7 +228,7 @@ void EntityEnemyBlood(Entity* self) {
                     self->hitboxWidth = self->ext.bloodDroplets.size / 2;
                     self->hitboxHeight = self->ext.bloodDroplets.size / 4 + 8;
                 } else {
-                    self->hitboxState = 0;
+                    self->hitboxState = HITBOX_INACTIVE;
                 }
 
                 if (self->hitFlags) {
@@ -241,7 +241,7 @@ void EntityEnemyBlood(Entity* self) {
                         }
                     }
                     g_Player.unk10++;
-                    self->hitboxState = 0;
+                    self->hitboxState = HITBOX_INACTIVE;
                 }
             }
         }

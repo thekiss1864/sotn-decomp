@@ -1400,7 +1400,7 @@ void func_80130264(Entity* self) {
         self->posY.i.hi += 2;
     }
     self->palette = PLAYER.palette;
-    self->hitboxState = 0;
+    self->hitboxState = HITBOX_INACTIVE;
     if (abs(PLAYER.velocityX) > FIX(3) &&
         (PLAYER.step_s != 2 || D_800B0914 != 4)) {
         func_8011A328(self, 13);
@@ -1673,7 +1673,7 @@ void func_801309B4(Entity* self) {
         func_8011A328(self, 14);
         self->enemyId = 3;
     } else {
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
     }
     if (self->poseTimer < 0) {
         if (D_80138448 != 0) {

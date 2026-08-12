@@ -98,7 +98,7 @@ void EntityMerman2(Entity* self) {
             self->flags &= ~FLAG_HAS_PRIMS;
         }
         self->flags &= ~FLAG_UNK_20000000;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         SetStep(MERMAN2_DYING);
     }
 
@@ -605,7 +605,7 @@ void EntityMermanFireSpit(Entity* self) {
         InitializeEntity(g_EInitWaterObject);
         self->zPriority += 4;
         self->animCurFrame = 0;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         if (self->params) {
             primIndex = g_api.AllocPrimitives(PRIM_GT4, 2);
             if (primIndex != -1) {
@@ -808,7 +808,7 @@ void EntityMerman2JumpAir(Entity* self) {
         self->flags |= FLAG_UNK_2000;
         self->zPriority += 4;
         self->animCurFrame = 0;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
     }
     MoveEntity();
     self->velocityY += FIX(0.15625);
@@ -879,7 +879,7 @@ void EntityDeadMerman(Entity* self) {
         self->animCurFrame = 13;
         self->ext.merman.timer = 0x20;
         self->velocityY = FIX(0.0625);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->drawFlags |= ENTITY_OPACITY;
         self->opacity = 0x80;
         self->flags |= FLAG_UNK_2000;

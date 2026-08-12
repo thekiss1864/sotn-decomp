@@ -472,12 +472,12 @@ void RicMain(void) {
         if (RIC.poseTimer < 0) {
             RIC.animCurFrame |= 0x8000;
         }
-        RIC.hitboxState = 0;
+        RIC.hitboxState = HITBOX_INACTIVE;
     } else {
         RIC.hitboxState = g_Ric.unk70;
         if ((g_Ric.timers[PL_T_INVINCIBLE_SCENE] |
              g_Ric.timers[PL_T_INVINCIBLE]) != 0) {
-            RIC.hitboxState = 0;
+            RIC.hitboxState = HITBOX_INACTIVE;
         }
     }
     func_us_801B94CC();

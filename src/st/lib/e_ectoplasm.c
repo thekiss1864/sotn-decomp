@@ -143,7 +143,7 @@ void func_us_801CD318(Entity* self) {
         if (self->step < 4) {
             if (self->flags & FLAG_DEAD) {
                 PlaySfxPositional(SFX_ECTOPLASM_DEATH);
-                self->hitboxState = 0;
+                self->hitboxState = HITBOX_INACTIVE;
                 self->ext.ectoplasm.unk90 = 0;
                 self->ext.ectoplasm.unk96 = 0x100;
                 self->blendMode |= BLEND_TRANSP;
@@ -192,7 +192,7 @@ void func_us_801CD318(Entity* self) {
         if (self->params & 0x10) {
             self->ext.ectoplasm.unk84 = 0;
             self->flags |= FLAG_UNK_2000;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->animCurFrame = 0;
             self->step = 0x20;
         }
@@ -324,7 +324,7 @@ void func_us_801CD9EC(Entity* self) {
         } else {
             self->anim = D_us_80182B4C;
         }
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->velocityY = FIX(-1.0);
         rnd = rand() & 0x7FF;
         self->posX.val += (rcos(rnd) << 4) * 0xC;

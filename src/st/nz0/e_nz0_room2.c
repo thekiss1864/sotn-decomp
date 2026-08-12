@@ -87,7 +87,7 @@ void EntityFloorSpikes(Entity* self) {
         self->hitboxHeight = 12;
         self->attackElement = 1;
         self->attack = 7;
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
         self->ext.nz0311c0.unk80 = self->posY.i.hi + g_Tilemap.scrollY.i.hi;
 
         x = self->posX.i.hi - 4;
@@ -120,14 +120,14 @@ void EntityFloorSpikes(Entity* self) {
         self->posY.i.hi -= 28;
 #endif
     case 1:
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
         if (self->ext.nz0311c0.unk84 != 0) {
             self->posY.val += FIX(1.0);
             y = g_Tilemap.scrollY.i.hi + self->posY.i.hi;
             if (self->ext.nz0311c0.unk80 < y) {
                 self->posY.i.hi =
                     self->ext.nz0311c0.unk80 - g_Tilemap.scrollY.i.hi;
-                self->hitboxState = 0;
+                self->hitboxState = HITBOX_INACTIVE;
             }
         } else {
             self->posY.val -= FIX(1);
@@ -169,12 +169,12 @@ void EntityTableWithGlobe(Entity* self) {
         self->hitboxHeight = 12;
         self->hitboxOffX = 0;
         self->hitboxOffY = -10;
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
     case 1:
         AnimateEntity(D_80180EF0, self);
         if (self->hitFlags) {
             PlaySfxPositional(SFX_GLASS_BREAK_E);
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             child = self + 1;
             CreateEntityFromEntity(E_HEART_DROP, self, child);
             child->params = D_80180F10[self->params];

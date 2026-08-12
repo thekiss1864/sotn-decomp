@@ -32,7 +32,7 @@ void EntityRelicContainer(Entity* self) {
             self->hitboxHeight = 12;
             self->hitboxOffX = 0;
             self->hitboxOffY = 10;
-            self->hitboxState = 2;
+            self->hitboxState = HITBOX_SOLID;
             newEntity = self + 1;
             CreateEntityFromEntity(E_ID(RELIC_CONTAINER), self, newEntity);
             newEntity->params = 0x100;
@@ -44,7 +44,7 @@ void EntityRelicContainer(Entity* self) {
         }
         AnimateEntity(anim_relic_container, self);
         if (self->hitFlags) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             SetStep(2);
         }
         break;
@@ -82,12 +82,12 @@ void EntityBlueFlameTable(Entity* self) {
         self->hitboxHeight = 16;
         self->hitboxOffX = 0;
         self->hitboxOffY = 10;
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
     case 1:
         AnimateEntity(anim_blue_flame_table, self);
         if (self->hitFlags) {
             g_api.PlaySfx(SFX_CANDLE_HIT);
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             SetStep(2);
         }
         break;

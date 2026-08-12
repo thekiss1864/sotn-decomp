@@ -432,7 +432,7 @@ void EntitySlogra(Entity* self) {
     case SLOGRA_DYING:
         switch (self->step_s) {
         case SLOGRA_DYING_START:
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             if (!self->ext.GS_Props.nearDeath) {
                 self->ext.GS_Props.nearDeath = 1;
             }
@@ -512,7 +512,7 @@ void EntitySlograSpear(Entity* self) {
         switch (self->step_s) {
         case 0:
             self->drawFlags = ENTITY_ROTATE;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             if (self->facingLeft) {
                 self->velocityX = FIX(-2.25);
             } else {

@@ -14,7 +14,7 @@ void EntityZombie(Entity* self) {
 
     if ((self->flags & FLAG_DEAD) && (self->step < 4)) {
         PlaySfxPositional(SFX_EXPLODE_SMALL);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         // Spawn Zombie explosion
         newEntity = AllocEntity(&g_Entities[224], &g_Entities[256]);
         if (newEntity != NULL) {
@@ -70,7 +70,7 @@ void EntityZombie(Entity* self) {
         }
 
         if (temp_a0 & 0xC0) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             SetStep(4);
         }
         break;

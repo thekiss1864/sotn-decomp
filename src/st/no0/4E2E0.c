@@ -86,7 +86,7 @@ void func_us_801CE2E0(Entity* self) {
         self->animCurFrame = 1;
         self->hitboxWidth = 24;
         self->hitboxHeight = 8;
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
         self->ext.et_801CE2E0.unk88 = 0;
     }
     self->ext.et_801CE2E0.posX = self->posX.i.hi + g_Tilemap.scrollX.i.hi;

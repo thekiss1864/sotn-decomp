@@ -444,14 +444,14 @@ void EntityDoppleganger40(void) {
         if (DOPPLEGANGER.poseTimer < 0) {
             DOPPLEGANGER.animCurFrame |= 0x8000;
         }
-        DOPPLEGANGER.hitboxState = 0;
+        DOPPLEGANGER.hitboxState = HITBOX_INACTIVE;
     } else {
         DOPPLEGANGER.hitboxState = g_Dop.unk70;
         if (g_Dop.status & PLAYER_STATUS_STONE) {
             DOPPLEGANGER.hitboxState &= 0xFFCF;
         }
         if ((g_Dop.timers[13] | g_Dop.timers[14]) != 0) {
-            DOPPLEGANGER.hitboxState = 0;
+            DOPPLEGANGER.hitboxState = HITBOX_INACTIVE;
         }
     }
     InitPlayerAfterImage();

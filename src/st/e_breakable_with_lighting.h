@@ -144,7 +144,7 @@ void EntityBreakableDebris(Entity* self) {
     case INIT:
         InitializeEntity(g_EInitBreakable);
 #ifndef NO_HITBOX_STATE
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
 #endif
         self->zPriority = BREAKABLE_ZPRIORITY;
         self->drawFlags = ENTITY_ROTATE;

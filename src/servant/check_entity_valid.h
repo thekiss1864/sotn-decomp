@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 s32 CheckEntityValid(Entity* entity) {
-    if (entity->hitboxState == 0)
+    if (entity->hitboxState == HITBOX_INACTIVE)
         return 0;
     if (entity->posX.i.hi < -16)
         return 0;

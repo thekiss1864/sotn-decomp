@@ -32,7 +32,7 @@ void EntityLargeSlime(Entity* self) {
     }
 
     if (self->flags & FLAG_DEAD && self->step < 7) {
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         PlaySfxPositional(SFX_NOISE_SWEEP_DOWN_A);
         SetStep(7);
     }
@@ -611,7 +611,7 @@ void func_us_801D3D08(Entity* self) {
     case 5:
         switch (self->step_s) {
         case 0:
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step_s++;
             break;
         case 1:
@@ -665,7 +665,7 @@ void EntitySlime(Entity* self) {
 
     if (self->flags & FLAG_DEAD && self->step < 6) {
         PlaySfxPositional(SFX_NOISE_SWEEP_DOWN_B);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         SetStep(6);
     }
 
@@ -888,7 +888,7 @@ void func_us_801D4744(Entity* self) {
     switch (self->step) {
     case 0:
         InitializeEntity(g_EInitSlime);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         // fallthrough
     case 1:
     case 2:
@@ -909,7 +909,7 @@ void func_us_801D4744(Entity* self) {
     case 4:
         switch (self->step_s) {
         case 0:
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step_s++;
             self->velocityX = -self->velocityX / 4;
             self->velocityY = -self->velocityY / 4;

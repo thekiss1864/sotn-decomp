@@ -147,7 +147,7 @@ void EntitySpectralSword(Entity* self) {
             if (tempVar == 16) {
                 entity = self + 1;
                 for (count = 0; count < 16; count++, entity++) {
-                    entity->hitboxState = 3;
+                    entity->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
                 }
                 SetStep(SPECTRAL_SWORD_HOLD);
             }
@@ -276,7 +276,7 @@ void EntitySpectralSword(Entity* self) {
     case SPECTRAL_SWORD_DEATH:
         switch (self->step_s) {
         case SPECTRAL_SWORD_DEATH_INIT:
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             entity = self + 1;
             for (count = 0; count < 16; count++, entity++) {
                 entity->flags |= FLAG_DEAD;
@@ -395,7 +395,7 @@ void EntitySpectralSwordAura(Entity* self) {
 
     if (!self->step) {
         InitializeEntity(g_EInitSpectralSwordAura);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->animCurFrame = 1;
         self->palette += 13;
         self->drawFlags |= ENTITY_OPACITY | ENTITY_SCALEY | ENTITY_SCALEX;
@@ -438,7 +438,7 @@ void EntitySpectralSwordWeapon(Entity* self) {
     switch (self->step) {
     case SPECTRAL_WEAPON_INIT:
         InitializeEntity(g_EInitSpectralSwordWeapon);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         // Large sword
         if (self->params) {
             self->animCurFrame = 2;
@@ -481,7 +481,7 @@ void EntitySpectralSwordWeapon(Entity* self) {
     case SPECTRAL_WEAPON_DEATH:
         switch (self->step_s) {
         case SPECTRAL_WEAPON_DEATH_INIT:
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             entity = self->ext.spectralSword.poltergeist;
             // decrement child count
             entity->ext.spectralSword.weaponCount--;

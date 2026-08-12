@@ -72,7 +72,7 @@ Entity* func_80118970(void) {
         if (!ent->entityId) {
             continue;
         }
-        if (ent->hitboxState == 0) {
+        if (ent->hitboxState == HITBOX_INACTIVE) {
             continue;
         }
         if (ent->flags & FLAG_UNK_00200000) {
@@ -146,7 +146,7 @@ s16 func_80118B18(Entity* ent1, Entity* ent2, s16 facingLeft) {
         if (ent2->entityId == E_NONE) {
             var_a1 = 0x1000;
         }
-        if (ent2->hitboxState == 0) {
+        if (ent2->hitboxState == HITBOX_INACTIVE) {
             var_a1 = 0x2000;
         }
         if (ent2->flags & FLAG_UNK_00200000) {
@@ -1727,7 +1727,7 @@ void UpdatePlayerEntities(void) {
         entity = &g_Entities[4];
         // Disable all hitboxes!
         for (i = 4; i < 64; i++, entity++) {
-            entity->hitboxState = 0;
+            entity->hitboxState = HITBOX_INACTIVE;
         }
     }
 }

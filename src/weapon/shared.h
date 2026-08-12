@@ -105,7 +105,7 @@ static void SetWeaponProperties(Entity* self, s32 kind) {
         self->attack = equip.attack;
         break;
     }
-    if (self->hitboxState == 4) {
+    if (self->hitboxState == HITBOX_WEAPON_HIT) {
         self->attack = 0xFF;
     }
 }

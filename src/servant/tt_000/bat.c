@@ -94,7 +94,7 @@ static Entity* FindValidTarget(Entity* self) {
         if (!entity->entityId) {
             continue;
         }
-        if (entity->hitboxState == 0) {
+        if (entity->hitboxState == HITBOX_INACTIVE) {
             continue;
         }
         if (entity->flags & FLAG_UNK_00200000) {

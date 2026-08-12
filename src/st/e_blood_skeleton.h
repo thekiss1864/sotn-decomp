@@ -39,7 +39,7 @@ void EntityBloodSkeleton(Entity* self) {
 
     if ((self->flags & FLAG_DEAD) && (self->step < 3)) {
         PlaySfxPositional(SFX_RED_SKEL_COLLAPSE);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         SetStep(BLOOD_SKELETON_DISASSEMBLE);
     }
 
@@ -144,7 +144,7 @@ void EntityBloodSkeleton(Entity* self) {
 
             if (!animationResult) {
                 self->hitPoints = 0;
-                self->hitboxState = 3;
+                self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
                 self->flags = g_api.enemyDefs[70].flags;
 #ifdef STAGE_IS_NZ0
                 self->flags &=

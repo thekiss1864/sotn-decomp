@@ -410,7 +410,7 @@ void EntityFishheadFireBreath(Entity* self) {
         entity = self->ext.fishhead.fishheadEntity;
         self->posY.i.hi = entity->posY.i.hi + 1;
         if (!AnimateEntity(anim_fire_breath, self)) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step += 1;
             return;
         }
@@ -483,7 +483,7 @@ void EntityFishheadDeathParts(Entity* self) {
     switch (self->step) {
     case 0:
         InitializeEntity(g_EInitFishheadPieces);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->animCurFrame = self->params + 0x14;
         self->ext.fishhead.attackTimer = self->params + 0xC;
         break;

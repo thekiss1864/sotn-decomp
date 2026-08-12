@@ -231,7 +231,7 @@ s32 func_ptr_80170004(Entity* self) {
                     self->hitboxWidth = 32;
                     self->hitboxHeight = 6;
                 } else {
-                    self->hitboxState = 0;
+                    self->hitboxState = HITBOX_INACTIVE;
                 }
             }
             self->ext.weapon.lifetime = 6;

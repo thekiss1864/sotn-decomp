@@ -205,7 +205,7 @@ void EntityOlroxDrool(Entity* self) {
         }
         self->primIndex = primIndex;
         self->flags |= FLAG_HAS_PRIMS;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         prim = &g_PrimBuf[primIndex];
         self->ext.prim = prim;
 
@@ -523,7 +523,7 @@ void func_801966B0(u16* sensors) {
     switch (g_CurrentEntity->step_s) {
     case 0:
         g_CurrentEntity->animCurFrame = 0;
-        g_CurrentEntity->hitboxState = 0;
+        g_CurrentEntity->hitboxState = HITBOX_INACTIVE;
         g_CurrentEntity->zPriority -= 0x10;
         g_CurrentEntity->drawFlags |= DRAW_HIDE;
         g_CurrentEntity->opacity = 0;
@@ -552,7 +552,7 @@ void func_801966B0(u16* sensors) {
             g_CurrentEntity->palette = PAL_FLAG(PAL_UNK_19F);
         }
         if (!--D_80199DE8) {
-            g_CurrentEntity->hitboxState = 3;
+            g_CurrentEntity->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
             g_CurrentEntity->palette = g_CurrentEntity->hitEffect;
             SetStep(1);
         }

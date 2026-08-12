@@ -314,7 +314,7 @@ void RicEntitySubwpnCross(Entity* self) {
             DestroyEntity(self);
             return;
         }
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->animSet = 0;
         self->posX.val += self->velocityX;
         break;

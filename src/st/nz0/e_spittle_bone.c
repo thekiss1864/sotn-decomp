@@ -224,7 +224,7 @@ void EntitySpittleBoneSpit(Entity* self) {
             PlaySfxPositional(SFX_SPITTLEBONE_ACID_SPLAT);
             EntityExplosionVariantsSpawner(self, 1, 2, 0, 0, 5, 0);
             self->animCurFrame = 0;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step++;
         }
         break;

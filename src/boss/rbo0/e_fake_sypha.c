@@ -99,7 +99,7 @@ void EntityFakeSypha(Entity* self) {
     switch (self->step) {
     case 0:
         InitializeEntity(D_us_801804C4);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         entity = self - 1;
         CreateEntityFromCurrentEntity(E_ID(COFFIN), entity);
         entity->posY.i.hi = 0xBA - g_Tilemap.scrollY.i.hi;
@@ -130,7 +130,7 @@ void EntityFakeSypha(Entity* self) {
             break;
         case 2:
             if (D_us_801806B0 & 2) {
-                self->hitboxState = 3;
+                self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
                 SetStep(3);
             }
             break;
@@ -519,7 +519,7 @@ void EntityFakeSypha(Entity* self) {
         switch (self->step_s) {
         case 0:
             D_us_801806B4++;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->velocityX = 0;
             self->velocityY = FIX(-2.5);
             self->ext.sypha.timer = 0x20;
@@ -618,7 +618,7 @@ void EntityFlameAttack(Entity* self) {
         } else {
             self->velocityY = FIX(0.25);
         }
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
         self->hitboxWidth = self->hitboxHeight = 3;
         // fallthrough
 
@@ -673,7 +673,7 @@ void EntityPetrifyCloud(Entity* self) {
         angle = self->rotate + ROT(90.0);
         self->velocityX = rcos(angle) * 18;
         self->velocityY = rsin(angle) * 20;
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
         self->hitboxWidth = self->hitboxHeight = 4;
         // fallthrough
     case 1:
@@ -913,7 +913,7 @@ void EntitySummonAttack(Entity* self) {
     case 0:
         InitializeEntity(D_us_80180554);
         self->animCurFrame = 0;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->hitboxOffY = 3;
         primIndex = g_api.AllocPrimitives(PRIM_G4, 0x10);
         if (primIndex == -1) {
@@ -1033,7 +1033,7 @@ void EntitySummonAttack(Entity* self) {
                 prim = prim->next;
             }
             if (brightness == 0) {
-                self->hitboxState = 3;
+                self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
                 g_api.FreePrimitives(self->primIndex);
                 self->flags &= ~FLAG_HAS_PRIMS;
                 SetStep(2);

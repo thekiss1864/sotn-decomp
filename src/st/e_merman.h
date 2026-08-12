@@ -80,7 +80,7 @@ void EntityMerman(Entity* self) {
 
     if ((self->flags & FLAG_DEAD) && (self->step < MERMAN_DYING)) {
         PlaySfxPositional(SFX_MERMAN_DEATH);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         if (self->step == MERMAN_LUNGE) {
             newEntity = AllocEntity(&g_Entities[224], &g_Entities[256]);
             if (newEntity != NULL) {
@@ -483,7 +483,7 @@ void EntityMermanJumpAir(Entity* self) {
         InitializeEntity(g_EInitMerman);
         self->zPriority += 4;
         self->animCurFrame = 0;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->flags |= FLAG_UNK_2000;
     }
     MoveEntity();

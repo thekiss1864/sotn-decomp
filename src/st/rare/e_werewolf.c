@@ -487,7 +487,7 @@ void EntityWerewolf(Entity* self) {
     case DEATH:
         switch (self->step_s) {
         case 0:
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->velocityX = FIX(2.0);
             if (self->facingLeft) {
                 self->velocityX = -self->velocityX;
@@ -607,7 +607,7 @@ void EntityWerewolfSpinAttackAfterImage(Entity* self) {
     if (!self->step) {
         InitializeEntity(g_EInitWerewolf);
         self->palette = g_EInitWerewolf[3] + PAL_FLAG(9);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->flags |= FLAG_UNK_00200000 | FLAG_UNK_2000;
         self->drawFlags = ENTITY_OPACITY | ENTITY_ROTATE;
         self->animCurFrame = self->params;

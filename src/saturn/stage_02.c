@@ -75,13 +75,13 @@ void EntityTableWithGlobe(Entity* self) {
         self->hitboxHeight = 12;
         self->hitboxOffX = 0;
         self->hitboxOffY = -0xA;
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
     case 1:
         AnimateEntityWithSpriteData(self, g_Stage02TableWithGlobeIdleAnim,
                                     g_Stage02TableWithGlobeFrames);
         if (self->hitFlags != 0) {
             PlaySfxPositional(0x61D); // sotn-lint-ignore
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             CreateEntityFromEntity(E_HEART_DROP, self, &self[1]);
             self[1].params = g_Stage02TableWithGlobeDropParams[self->params];
             SetStep(2);

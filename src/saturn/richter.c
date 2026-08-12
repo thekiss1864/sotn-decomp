@@ -1080,7 +1080,7 @@ void RicEntitySlideKick(Entity* entity) {
         }
         entity->hitboxState = entity->ext.subweapon.timer;
         if (PLAYER.pose < 2) {
-            entity->hitboxState = 0;
+            entity->hitboxState = HITBOX_INACTIVE;
         }
         if (PLAYER.pose > 7) {
             DestroyEntity(entity);

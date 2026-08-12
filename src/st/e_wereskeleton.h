@@ -239,7 +239,7 @@ void EntityWereskeleton(Entity* self) {
             if (tempEntity != NULL) {
                 MakeEntityFromId(E_WERESKELETON, self, tempEntity);
                 tempEntity->palette = PAL_FLAG(PAL_CC_FIRE_EFFECT);
-                tempEntity->hitboxState = 0;
+                tempEntity->hitboxState = HITBOX_INACTIVE;
                 tempEntity->facingLeft = self->facingLeft;
                 tempEntity->flags = FLAG_DESTROY_IF_OUT_OF_CAMERA |
                                     FLAG_DESTROY_IF_BARELY_OUT_OF_CAMERA |
@@ -272,7 +272,7 @@ void EntityWereskeleton(Entity* self) {
             if (tempEntity != NULL) {
                 MakeEntityFromId(E_WERESKELETON, self, tempEntity);
                 tempEntity->palette = 0x226;
-                tempEntity->hitboxState = 0;
+                tempEntity->hitboxState = HITBOX_INACTIVE;
                 tempEntity->facingLeft = self->facingLeft;
                 tempEntity->flags = FLAG_DESTROY_IF_OUT_OF_CAMERA |
                                     FLAG_DESTROY_IF_BARELY_OUT_OF_CAMERA |
@@ -376,7 +376,7 @@ void func_us_801CEA2C(Entity* self) {
 
     if (!self->step) {
         InitializeEntity(g_EInitInteractable);
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
         self->attack = 1;
         self->attackElement = 1;
     }

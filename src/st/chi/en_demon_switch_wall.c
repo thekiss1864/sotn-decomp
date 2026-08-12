@@ -58,7 +58,7 @@ void EntityDemonSwitch(Entity* self) {
 
         self->animCurFrame = 3;
         self->hitPoints = 32767;
-        self->hitboxState = 3;
+        self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
         self->hitboxWidth = 6;
         self->hitboxHeight = 8;
 

@@ -14,7 +14,7 @@ void EntityGearSidewaysLarge(Entity* self) {
     case 0:
         InitializeEntity(g_EInitEnvironment);
         self->zPriority = 0x6C;
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
         self->hitboxWidth = 8;
         self->hitboxHeight = 3;
         self->animCurFrame = 3;

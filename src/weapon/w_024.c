@@ -127,7 +127,7 @@ static void EntityWeaponAttack(Entity* self) {
         }
         break;
     case 4:
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         g_Player.unk48 = 0;
         self->drawFlags |= ENTITY_ROTATE;
         self->posY.val += self->velocityY;
@@ -398,7 +398,7 @@ static void EntityWeaponShieldSpell(Entity* self) {
             prim->drawMode &= ~DRAW_HIDE;
         }
         if (self->ext.shield.unk80 >= 35) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
         }
         if (self->ext.shield.unk80 == 32) {
             // This should spawn the rocks that rise in the background?
@@ -414,7 +414,7 @@ static void EntityWeaponShieldSpell(Entity* self) {
             prim = prim->next;
             prim = prim->next;
             prim->drawMode |= DRAW_HIDE;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step++;
         }
         self->ext.shield.unk80++;

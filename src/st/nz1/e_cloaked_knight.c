@@ -230,7 +230,7 @@ void EntityCloakedKnight(Entity* self) {
         break;
 
     case 6: // death
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         PlaySfxPositional(SFX_CLOAKED_KNIGHT_DEATH);
         PlaySfxPositional(SFX_FM_THUNDER_EXPLODE);
         entity = AllocEntity(&g_Entities[224], &g_Entities[256]);
@@ -284,7 +284,7 @@ void EntityCloakedKnightCloak(Entity* self) {
     switch (self->step) {
     case 0:
         InitializeEntity(g_EInitCloakedKnight);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->flags |= FLAG_UNK_00200000 | FLAG_UNK_2000;
         self->drawFlags = ENTITY_ROTATE;
         // fallthrough
@@ -318,7 +318,7 @@ void EntityCloakedKnightAura(Entity* self) {
 
     if (!self->step) {
         InitializeEntity(g_EInitCloakedKnightAura);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->flags |= FLAG_UNK_00200000 | FLAG_UNK_2000;
         self->animCurFrame = 1;
         self->palette += 1; // n.b.! increment operator doesn't work
@@ -361,7 +361,7 @@ void EntityCloakedKnightSword(Entity* self) {
         if ((entity->flags & FLAG_DEAD) != 0 ||
             entity->entityId != E_CLOAKED_KNIGHT) {
             if (self->step != 4) {
-                self->hitboxState = 0;
+                self->hitboxState = HITBOX_INACTIVE;
                 SetStep(4);
             }
         }

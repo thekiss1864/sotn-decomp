@@ -92,7 +92,7 @@ void func_us_801BACF4(Entity* self) {
         echo_flag = true;
         if (self->ext.et_801BACF4.unk7E > self->ext.et_801BACF4.unk80) {
             self->ext.et_801BACF4.unk7E = self->ext.et_801BACF4.unk80;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step++;
         }
         break;

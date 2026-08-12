@@ -43,7 +43,7 @@ void func_us_801C82B8(Entity* self) {
         (self->flags & FLAG_DEAD || g_CastleFlags[NO4_WATER_BLOCKED] > 2)) {
         DestroyEntity(newEnt);
         SetStep(5);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->ext.spearGuard.unk7C = 64;
         self->drawFlags = ENTITY_OPACITY;
         self->opacity = 0x7F;

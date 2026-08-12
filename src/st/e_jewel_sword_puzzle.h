@@ -87,7 +87,7 @@ void EntityMermanRockLeftSide(Entity* self) {
     switch (self->step) {
     case 0:
         InitializeEntity(g_EInitInteractable);
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
         self->hitboxWidth = 16;
         self->hitboxHeight = 24;
 
@@ -108,7 +108,7 @@ void EntityMermanRockLeftSide(Entity* self) {
                 *(&g_Tilemap.fg[tilePos] + TILE_ADVANCE) = *(tileLayoutPtr + 3);
                 tilePos += TILE_SHIFT;
             }
-            self->hitboxState = 1;
+            self->hitboxState = HITBOX_ACTIVE;
             self->step = 2;
         }
         break;
@@ -170,7 +170,7 @@ void EntityMermanRockLeftSide(Entity* self) {
                 newEntity->params = ITEM_POT_ROAST;
             }
             g_CastleFlags[CF_STEPS] |= rockBroken;
-            self->hitboxState = 1;
+            self->hitboxState = HITBOX_ACTIVE;
             self->step++;
         }
         break;
@@ -196,7 +196,7 @@ void EntityMermanRockRightSide(Entity* self) {
     switch (self->step) {
     case 0:
         InitializeEntity(g_EInitInteractable);
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
         self->hitboxWidth = 16;
         self->hitboxHeight = 24;
 
@@ -217,7 +217,7 @@ void EntityMermanRockRightSide(Entity* self) {
                 *(&g_Tilemap.fg[tilePos] + TILE_ADVANCE) = *(tileLayoutPtr + 3);
                 tilePos += TILE_SHIFT;
             }
-            self->hitboxState = 1;
+            self->hitboxState = HITBOX_ACTIVE;
             self->step = 2;
         }
         break;
@@ -273,7 +273,7 @@ void EntityMermanRockRightSide(Entity* self) {
 
         if (self->ext.mermanRock.unk84 > 1) {
             g_CastleFlags[CF_STEPS] |= rockBroken;
-            self->hitboxState = 1;
+            self->hitboxState = HITBOX_ACTIVE;
             self->step++;
         }
         break;

@@ -192,7 +192,7 @@ void EntityStatue(Entity* self) {
             } else {
                 statueGear->ext.statue.step = 2;
             }
-            self->hitboxState = 2;
+            self->hitboxState = HITBOX_SOLID;
             self->step++;
             PlaySfxPositional(SFX_STONE_MOVE_C);
         }
@@ -227,7 +227,7 @@ void EntityStatue(Entity* self) {
                 }
             }
             statueGear->ext.statue.step = 0;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step_s = 0;
             self->step--;
         }

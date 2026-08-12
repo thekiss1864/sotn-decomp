@@ -66,7 +66,7 @@ void EntityCtulhu(Entity* self) {
     }
 
     if ((self->flags & FLAG_DEAD) && self->step < CTULHU_DEATH) {
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         PlaySfxPositional(SFX_CTULHU_DEATH);
         SetStep(CTULHU_DEATH);
     }
@@ -775,7 +775,7 @@ void EntityCtulhuIceShockwave(Entity* self) {
         if (self->flags & FLAG_DEAD) {
             self->drawFlags |= ENTITY_OPACITY;
             self->opacity = 128;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step++;
         }
         break;

@@ -71,7 +71,7 @@ void EntitySubwpnKnife(Entity* self) {
         if (self->hitFlags == 1) {
             self->ext.timer.t = 4;
             self->step = DAGGER_HIT_ENEMY;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             return;
         }
         for (i = 0; i < 8; i++) {
@@ -88,7 +88,7 @@ void EntitySubwpnKnife(Entity* self) {
                 self->ext.timer.t = 64;
                 self->velocityX = -(self->velocityX >> 3);
                 self->velocityY = FIX(-2.5);
-                self->hitboxState = 0;
+                self->hitboxState = HITBOX_INACTIVE;
                 self->posX.i.hi += xCol;
                 CreateEntFactoryFromEntity(
                     self, FACTORY(BP_REBOUND_STONE_HIT, 0), 0);
@@ -320,7 +320,7 @@ void EntitySubwpnThrownAxe(Entity* self) {
             return;
         }
         if (self->hitFlags == 2) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->velocityX = -(self->velocityX / 2);
             self->velocityY = FIX(-3);
             self->step = AXE_BOUNCE;
@@ -748,9 +748,9 @@ void EntitySubwpnHolyWaterFlame(Entity* self) {
         sp20[3] = (sp20[2] + sp20[4]) / 2;
         prim = &g_PrimBuf[self->primIndex];
         if (self->ext.holywater.timer & 3) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
         } else {
-            self->hitboxState = 2;
+            self->hitboxState = HITBOX_SOLID;
         }
         if (--self->ext.holywater.timer < 0x11) {
             DestroyEntity(self);
@@ -1709,7 +1709,7 @@ void EntitySubwpnReboundStone(Entity* self) {
             return;
         }
         if (self->ext.reboundStone.lifeTimer == 0x20) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
         }
         prim = (PrimLineG2*)&g_PrimBuf[self->primIndex];
         while (prim != NULL) {

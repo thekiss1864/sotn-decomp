@@ -160,7 +160,7 @@ void EntityThornweed(Entity* self) {
         if (!self->step_s) {
             entity = self + 1;
             entity->flags |= FLAG_DEAD;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->opacity = DeathExplosionDelay;
             self->drawFlags |= ENTITY_OPACITY;
             self->step_s++;
@@ -294,7 +294,7 @@ void EntityCorpseweed(Entity* self) {
         self->hitboxOffY = 9;
         self->drawFlags = ENTITY_SCALEX | ENTITY_SCALEY;
         self->scaleX = self->scaleY = 0;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->ext.corpseweed.bobbingAngle = 8;
 
         // Setup primitives
@@ -479,7 +479,7 @@ void EntityCorpseweed(Entity* self) {
             // Check if both edges are done
             if (doneCount == 2) {
                 self->ext.corpseweed.stalkDoneGrowing = true;
-                self->hitboxState = 3;
+                self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
                 SetStep(GROW_TO_IDLE);
             }
             break;
@@ -562,7 +562,7 @@ void EntityCorpseweed(Entity* self) {
         case DEATH_INIT:
             self->ext.corpseweed.leavesDoneGrowing = false;
             self->ext.corpseweed.stalkDoneGrowing = false;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->drawFlags = ENTITY_ROTATE;
             // Need a no-op self access here for PSP match
             self->step_s;

@@ -263,7 +263,7 @@ void EntityBloodyZombie(Entity* self) {
 
     if (self->flags & FLAG_DEAD && self->step < 8) {
         PlaySfxPositional(SFX_BLOODY_ZOMBIE_DEATH);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->flags &= ~FLAG_UNK_20000000;
         SetStep(BLOODY_ZOMBIE_DYING);
     }
@@ -499,7 +499,7 @@ void EntityBloodDrips(Entity* self) { // BloodDrips
         if (primIndex != -1) {
             self->primIndex = primIndex;
             self->flags |= FLAG_HAS_PRIMS;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             prim = &g_PrimBuf[primIndex];
             self->ext.prim = prim;
             // i iterator here is otherwise unused but needed for PSP match

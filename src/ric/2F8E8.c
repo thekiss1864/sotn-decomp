@@ -255,7 +255,7 @@ void RicEntitySubwpnReboundStone(Entity* self) {
             return;
         }
         if (self->ext.reboundStone.lifeTimer == 0x20) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
         }
         prim = (PrimLineG2*)&g_PrimBuf[self->primIndex];
         while (prim != NULL) {

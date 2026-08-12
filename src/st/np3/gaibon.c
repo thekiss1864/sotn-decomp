@@ -124,7 +124,7 @@ void EntityGaibon(Entity* self) {
                 self->ext.GS_Props.nearDeath = 1;
                 xVar = self->posX.i.hi - 0x80;
                 if (abs(xVar) < 0x60) {
-                    self->hitboxState = 0;
+                    self->hitboxState = HITBOX_INACTIVE;
                     SetStep(GAIBON_NEAR_DEATH);
                 }
             }
@@ -137,7 +137,7 @@ void EntityGaibon(Entity* self) {
             }
         }
         if (slograGaibonRetreat) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             if (self->step != SLOGRA_GAIBON_RETREAT) {
                 SetStep(SLOGRA_GAIBON_RETREAT);
             }
@@ -668,7 +668,7 @@ void EntityGaibonLeg(Entity* self) {
 
     if (!self->step) {
         InitializeEntity(g_EInitGaibonNP3);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
     }
 
     gaibon = self - 1;
@@ -760,7 +760,7 @@ void EntityLargeGaibonProjectile(Entity* self) {
             self->palette = PAL_FLAG(PAL_UNK_1F3);
             self->blendMode = BLEND_TRANSP | BLEND_ADD;
             self->step = 2;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->flags |= FLAG_UNK_2000;
         }
         break;

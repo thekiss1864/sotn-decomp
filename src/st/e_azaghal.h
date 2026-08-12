@@ -564,9 +564,9 @@ void EntityAzaghal(Entity* self) {
         InitializeEntity(g_EInitAzaghal);
 #if defined(STAGE_IS_RNO2) && !defined(VERSION_PSP)
         self->hitboxWidth = self->hitboxHeight = 0xC;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
 #else
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->hitboxWidth = self->hitboxHeight = 0xC;
 #endif
 #if defined(STAGE_IS_RNO2)
@@ -685,7 +685,7 @@ void EntityAzaghal(Entity* self) {
                 LOW(prim->x3) = LOW(prim->x0);
                 prim = prim->next;
             }
-            self->hitboxState = 2;
+            self->hitboxState = HITBOX_SOLID;
             SetStep(SEEK_PLAYER);
         }
         break;
@@ -1151,7 +1151,7 @@ void EntityAzaghal(Entity* self) {
 void EntityAzaghalSwordHitbox(Entity* self) {
     if (!self->step) {
         InitializeEntity(g_EInitAzaghal);
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
         self->hitboxWidth = self->hitboxHeight = 4;
         return;
     }

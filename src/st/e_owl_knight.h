@@ -40,7 +40,7 @@ void EntityOwl(Entity* self) {
     }
     if (self->flags & FLAG_DEAD) {
         if (self->step < 9) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->animCurFrame = 12;
             self->velocityX = 0;
             self->velocityY = 0;
@@ -597,7 +597,7 @@ void EntityOwlKnight(Entity* self) {
             tempEntity = SWORD;
             DestroyEntity(tempEntity);
             OWL->ext.owl.unk80 |= 0x20;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->ext.owl.unk82 = 0x60;
             PlaySfxPositional(SFX_OWL_KNIGHT_DEATH);
             SetStep(17);

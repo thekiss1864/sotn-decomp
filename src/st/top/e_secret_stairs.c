@@ -45,14 +45,14 @@ void EntityStairSwitch(Entity* self) {
         self->animCurFrame = 5;
         self->hitboxWidth = 6;
         self->hitboxHeight = 6;
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
         if (self->params) {
             self->step = 4;
             self->zPriority += 2;
         } else if (g_CastleFlags[TOP_SECRET_STAIRS]) {
             self->animCurFrame = 4;
             self->palette++;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             g_Tilemap.fg[0x1AE4] = 0x328;
             self->step = 3;
         } else {
@@ -77,7 +77,7 @@ void EntityStairSwitch(Entity* self) {
     case 2:
         if (self->hitFlags) {
             g_api.PlaySfx(SFX_ANIME_SWORD_B);
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->palette++;
             g_CastleFlags[TOP_SECRET_STAIRS] = 1;
             g_api.RevealSecretPassageAtPlayerPositionOnMap(TOP_SECRET_STAIRS);

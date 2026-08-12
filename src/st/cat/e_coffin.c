@@ -52,7 +52,7 @@ void EntityCoffin(Entity* self) {
         InitializeEntity(g_EInitCoffin);
         self->hitboxWidth = 8;
         self->hitboxHeight = 0x14;
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
         self->hitPoints = 2;
         self->facingLeft = self->params >> 8;
         self->params &= 0xFF;
@@ -61,7 +61,7 @@ void EntityCoffin(Entity* self) {
     case DESTROYED:
         if (self->flags & FLAG_DEAD) {
             g_api.PlaySfx(SFX_WALL_DEBRIS_B);
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step++;
         }
         break;
@@ -111,7 +111,7 @@ void EntityCoffin(Entity* self) {
         InitializeEntity(g_EInitCoffin);
         self->flags |= FLAG_UNK_2000;
         self->drawFlags |= ENTITY_ROTATE;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
 
         params = self->params;
         self->animCurFrame = params + 0x15;

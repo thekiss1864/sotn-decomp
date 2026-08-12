@@ -62,7 +62,7 @@ void EntitySkelerang(Entity* self) {
     }
 
     if ((self->flags & FLAG_DEAD) && self->step < 10) {
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         PlaySfxPositional(SFX_SKELETON_DEATH_C);
         DestroyEntity(self + 1);
         (self + 2)->step = BOOMERANG_DESTROY;
@@ -232,7 +232,7 @@ void EntitySkelerang(Entity* self) {
                 MakeEntityFromId(E_SKELERANG, self, entity);
                 entity->flags = FLAG_DESTROY_IF_OUT_OF_CAMERA |
                                 FLAG_POS_CAMERA_LOCKED | FLAG_UNK_2000;
-                entity->hitboxState = 0;
+                entity->hitboxState = HITBOX_INACTIVE;
                 entity->animCurFrame = i + 44;
                 entity->params = i;
                 entity->facingLeft = self->facingLeft;
@@ -307,14 +307,14 @@ void EntitySkelerangBoomerang(Entity* self) {
         InitializeEntity(g_EInitSkelerangBoomerang);
         self->drawFlags |= ENTITY_ROTATE;
         self->animCurFrame = 0;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         break;
 
     case BOOMERANG_PRETHROW:
         entity = (self - 2) - self->params;
         self->posX.i.hi = entity->posX.i.hi;
         self->posY.i.hi = entity->posY.i.hi;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->animCurFrame = 0;
         self->step_s = 0;
         self->ext.skelerang.unk84 = 48;
@@ -326,7 +326,7 @@ void EntitySkelerangBoomerang(Entity* self) {
         break;
 
     case BOOMERANG_FLY:
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
         MoveEntity();
         self->rotate += ROT(22.5);
         if (!self->ext.skelerang.unk84) {
@@ -354,7 +354,7 @@ void EntitySkelerangBoomerang(Entity* self) {
         break;
 
     case BOOMERANG_IN_HAND:
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->rotate = ROT(45);
         break;
 

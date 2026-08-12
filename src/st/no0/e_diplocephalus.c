@@ -42,7 +42,7 @@ void EntityDiplocephalusFoot(Entity* self) {
     switch (self->step) {
     case 6:
         self->drawFlags = DRAW_COLORS;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->velocityY =
             legVelY[self->params][self->ext.diploBody.unk9E - 1] - FIX(8);
         self->ext.diploBody.velocityY = self->velocityY;
@@ -210,7 +210,7 @@ void EntityDiplocephalusLeg(Entity* self) {
 
     case 6:
         self->drawFlags = ENTITY_ROTATE;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->velocityY =
             legVelY[self->params][self->ext.diploBody.unk9E + 3] - FIX(8);
         self->ext.diploBody.velocityY = self->velocityY;
@@ -534,7 +534,7 @@ void EntityDiplocephalus(Entity* self) {
         entityRef = self;
 
         for (i = 0; i < 10; i++) {
-            entityRef->hitboxState = 0;
+            entityRef->hitboxState = HITBOX_INACTIVE;
             entityRef++;
         }
         break;

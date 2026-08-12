@@ -148,7 +148,7 @@ void EntityOrobourous(Entity* self) {
         }
         self->drawFlags = ENTITY_DEFAULT;
         self->ext.orob.unk9 = 0;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->ext.orob.rest_time = 0x800;
         self->ext.orob.stepTimer = 0x10;
         other = AllocEntity(&g_Entities[32], &g_Entities[47]);
@@ -290,7 +290,7 @@ void EntityOrobSegment(Entity* self) {
     s32 miscTemp;
 
     if ((self->flags & FLAG_DEAD) && ((self->step) < 8)) {
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->flags |= FLAG_DESTROY_IF_OUT_OF_CAMERA |
                        FLAG_DESTROY_IF_BARELY_OUT_OF_CAMERA;
         SetStep(OROB_DEAD);
@@ -344,12 +344,12 @@ void EntityOrobSegment(Entity* self) {
     }
     miscTemp = (self->params & 3);
     if ((g_Timer & 3) == miscTemp) {
-        self->hitboxState = 3;
+        self->hitboxState = HITBOX_SOLID | HITBOX_ACTIVE;
     } else {
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
     }
     if (self->ext.orob.riderDead) {
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
     }
 }
 
@@ -359,7 +359,7 @@ void EntityOrobHeadParts(Entity* self) {
     if (!self->step) {
         InitializeEntity(g_EInitOruburosHead);
         self->drawFlags = ENTITY_ROTATE;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         // We create 4 of this entity, with params 0 to 3.
         self->animCurFrame = self->params + 8;
         self->zPriority += self->params;
@@ -452,7 +452,7 @@ void EntityOrobHolyAttacker(Entity* self) {
     switch (self->step) {
     case 0:
     case 1:
-        self->hitboxState = 2;
+        self->hitboxState = HITBOX_SOLID;
         self->attack = 48;
         self->attackElement = ELEMENT_HOLY;
         self->hitboxWidth = 8;

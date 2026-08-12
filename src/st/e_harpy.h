@@ -312,7 +312,7 @@ void EntityHarpy(Entity* self) {
         switch (self->step_s) {
         case 0:
             self->drawFlags = ENTITY_DEFAULT;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             entity = self + 1;
             DestroyEntity(entity);
             self->drawFlags = ENTITY_ROTATE;
@@ -421,7 +421,7 @@ void EntityHarpyFlame(Entity* self) {
         self->scaleX = self->scaleY = 0x200;
         if (self->params & 0xFF00) {
             self->animCurFrame = self->params >> 8;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->opacity = 0x40;
             self->step = 2;
             self->drawFlags |= ENTITY_OPACITY;

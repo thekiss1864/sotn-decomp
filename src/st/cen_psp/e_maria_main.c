@@ -833,7 +833,7 @@ void MarMain(void) {
 
     g_api.UpdateAnim(mar_80155964, mar_8015538C);
     if (g_Maria.status & PLAYER_STATUS_DEAD) {
-        MARIA.hitboxState = 0;
+        MARIA.hitboxState = HITBOX_INACTIVE;
     } else {
         MARIA.hitboxState = 0x33;
         if (g_Maria.status & PLAYER_STATUS_STONE) {
@@ -842,7 +842,7 @@ void MarMain(void) {
 
         if ((g_Maria.timers[PL_T_INVINCIBLE_SCENE] |
              g_Maria.timers[PL_T_INVINCIBLE]) != 0) {
-            MARIA.hitboxState = 0;
+            MARIA.hitboxState = HITBOX_INACTIVE;
         }
     }
 

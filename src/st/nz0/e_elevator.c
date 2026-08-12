@@ -19,7 +19,7 @@ void func_801B6DE4(Entity* self) {
         self->hitboxWidth = 6;
         self->hitboxHeight = 8;
         self->hitboxOffY = -22;
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
 
         primIndex = g_api.AllocPrimitives(PRIM_GT4, 1);
         if (primIndex == -1) {
@@ -99,7 +99,7 @@ void EntityElevator(Entity* self) {
         self->hitboxOffY = 68;
         self->hitboxWidth = 16;
         self->hitboxHeight = 5;
-        self->hitboxState = 1;
+        self->hitboxState = HITBOX_ACTIVE;
 
         if (elevator_target) {
             y = elevator_target_pos[elevator_target];

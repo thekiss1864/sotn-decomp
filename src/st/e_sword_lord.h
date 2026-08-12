@@ -105,8 +105,8 @@ void EntitySwordLord(Entity* self) {
 
     if ((self->flags & FLAG_DEAD) && self->step < 6) {
         PlaySfxPositional(SFX_SWORD_LORD_DEATH);
-        self->hitboxState = 0;
-        (self + 1)->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
+        (self + 1)->hitboxState = HITBOX_INACTIVE;
         self->pose = 0;
         self->poseTimer = 0;
         self->step_s = 0;
@@ -388,7 +388,7 @@ void EntitySwordLord(Entity* self) {
 
     case 7:
         InitializeEntity(g_EInitSwordLord);
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
         self->animCurFrame = self->params + 30;
         self->flags |= FLAG_DESTROY_IF_OUT_OF_CAMERA |
                        FLAG_DESTROY_IF_BARELY_OUT_OF_CAMERA |

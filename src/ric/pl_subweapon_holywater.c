@@ -345,7 +345,7 @@ void RicEntitySubwpnHolyWater(Entity* self) {
             g_api.CreateEntFactoryFromEntity(self, BP_HOLYWATER_GLASS, 0);
             g_api.PlaySfx(SFX_RIC_HOLY_WATER_ATTACK);
             self->animSet = 0;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->velocityX = self->velocityX >> 2;
             self->ext.holywater.timer = 0x50;
             self->step = 3;
@@ -430,7 +430,7 @@ void RicEntitySubwpnHolyWater(Entity* self) {
         }
         self->posY.i.hi -= 5;
         self->animCurFrame = 0;
-        self->hitboxState = 0;
+        self->hitboxState = HITBOX_INACTIVE;
     }
     g_Player.timers[PL_T_3] = 2;
 }
@@ -532,12 +532,12 @@ void RicEntitySubwpnHolyWaterFlame(Entity* self) {
             return;
         }
         if (self->ext.holywater.timer & 3) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
         } else {
             self->hitboxState = self->ext.holywater.hitboxState;
         }
         if (self->ext.holywater.timer < 0x15) {
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
         }
         i = 0;
         while (prim) {

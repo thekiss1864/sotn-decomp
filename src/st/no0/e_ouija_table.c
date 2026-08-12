@@ -179,14 +179,14 @@ void EntityOuijaTableComponent(Entity* self) {
         // Walking table
         case 2:
             self->animCurFrame = 14;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step = OUIJA_COMPONENT_NOOP;
             break;
 
         // Unknown? Doesn't seem like this param is used
         case 3:
             self->animCurFrame = 15;
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->step = OUIJA_COMPONENT_NOOP;
             break;
         }
@@ -274,7 +274,7 @@ void EntityOuijaTableComponent(Entity* self) {
     case OUIJA_COMPONENT_DEATH:
         switch (self->step_s) {
         case OUIJA_COMPONENT_BEGIN_DEATH:
-            self->hitboxState = 0;
+            self->hitboxState = HITBOX_INACTIVE;
             self->velocityX = 0;
             self->velocityY = 0;
             self->drawFlags = ENTITY_ROTATE;
